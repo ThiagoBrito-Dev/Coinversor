@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #141518;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
+
+header {
+  color: #38c065;
+
+  text-align: center;
+  font-size: 1.5rem;
+
+  margin: 30px 0;
+}
+
+header h1 {
+  font-family: Pattaya, sans-serif;
+}
+
+section > div {
+  background-color: #090909b5;
+  border-radius: 7.5px;
+  border: 1.5px solid #5cac00;
+  box-shadow: 10px 10px 20px rgba(2.5, 2.5, 2.5, 0.95);
+
+  margin: 0 auto;
+  padding: 15px;
+
+  width: 500px;
+}
+
+section div h2 {
+  color: #38c065;
+
+  margin-bottom: 25px;
+  text-align: center
+}
+
+section div div p {
+  color: #f1f0e3;
+
+  margin: 7.5px 0;
+}
+
+section div div select, section div div input {
+  outline: 0;
+
+  height: 22.5px;
+  width: 170px;
+
+  margin-bottom: 15px;
+}
+
+section div div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+section div div input {
+  background: transparent;
+  color: #f1f0e3;
+
+  border: 1.5px solid #5cac00;
+  border-radius: 30px 0 30px 0;
+  padding-left: 11.5px;
+}
+
+section div div input:last-of-type {
+  cursor: default;
+}
+
+section div div select {
+  background: transparent;
+  color: #38c038;
+
+  border: 1.5px solid #5cac00;
+}
+
+section div div select option {
+  background: #090909;
+  color: #f1f0e3;
+}
+
+section div div:last-of-type {
+  display: flex;
+  justify-content: center;
+}
+
+section div div button {
+  margin-top: 20px;
+  width: 145px;
+  height: 30px;
+
+  background: #38c038;
+  
+  border: 0;
+  border-radius: 2px;
+
+  font-family: Pattaya, sans-serif;
+  font-weight: 400;
+  font-size: 1.025rem;
+
+  transition: background 0.5s;
+}
+
+section div div button:hover {
+  background: #5cac00;
+}
