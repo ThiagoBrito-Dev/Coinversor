@@ -17,15 +17,8 @@ function convert() {
     if (currencyInfoRequest.readyState == 4) {
       if (currencyInfoRequest.status == 200) {
         const currencyInfo = JSON.parse(currencyInfoRequest.responseText)
-        let currencyValue = 0
-
-        for (let item in currencyInfo[conversionType]) {
-          if (item == 'ask') {
-            currencyValue = currencyInfo[conversionType][item]
-          }
-        }
-
-        let convertedValue = exchangeValue * currencyValue
+        const { ask } = currencyInfo[conversionType]
+        let convertedValue = exchangeValue * ask
 
         convertedValue = convertedValue.toLocaleString(
           'pt-BR',
