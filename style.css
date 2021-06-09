@@ -27,7 +27,7 @@ section > div {
   background-color: #090909b5;
   border-radius: 7.5px;
   border: 1.5px solid #5cac00;
-  box-shadow: 10px 10px 20px rgba(2.5, 2.5, 2.5, 0.95);
+  box-shadow: 10px 10px 15px rgba(2.5, 2.5, 2.5, 0.95);
 
   margin: 0 auto;
   padding: 15px;
@@ -52,7 +52,7 @@ section div div select, section div div input {
   outline: 0;
 
   height: 22.5px;
-  width: 170px;
+  width: 175px;
 
   margin-bottom: 15px;
 }
@@ -79,14 +79,28 @@ section div div select {
   color: #38c038;
 
   border: 1.5px solid #5cac00;
+  padding-left: 5px;
+}
+
+section div div select::-webkit-scrollbar {
+  width: 11px;
+}
+
+section div div select::-webkit-scrollbar-thumb {
+  background: #920707;
+  border-radius: 10px;
+}
+
+section div div select::-webkit-scrollbar-track {
+  background: #090909f9;
 }
 
 section div div select option {
-  background: #090909;
+  background: #090909f9;
   color: #f1f0e3;
 }
 
-section div div:last-of-type {
+section div div:last-of-type { /* .button-div { */ 
   display: flex;
   justify-content: center;
 }
@@ -111,3 +125,30 @@ section div div button {
 section div div button:hover {
   background: #5cac00;
 }
+
+/* section div div div h2 {
+  margin-top: 7.5px;
+}
+
+.test {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.test div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-right: 10px;
+  border-right: 0.25px solid #920707;
+}
+
+.test div:last-of-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-left: 10px;
+  border-left: 0.25px solid #920707;
+} */
