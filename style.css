@@ -100,7 +100,7 @@ section div div select option {
   color: #f1f0e3;
 }
 
-section div div:last-of-type { /* .button-div { */ 
+section div div:last-of-type {
   display: flex;
   justify-content: center;
 }
@@ -125,30 +125,3 @@ section div div button {
 section div div button:hover {
   background: #5cac00;
 }
-
-/* section div div div h2 {
-  margin-top: 7.5px;
-}
-
-.test {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.test div:first-of-type {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding-right: 10px;
-  border-right: 0.25px solid #920707;
-}
-
-.test div:last-of-type {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  padding-left: 10px;
-  border-left: 0.25px solid #920707;
-} */
