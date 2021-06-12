@@ -16,14 +16,13 @@
 </head>
 
 <body>
-  <header>
-    <h1>Coinversor</h1>
-  </header>
-  <section>
-    <div>
-      <div>
-        <h2>Converta valores para real</h2>
-      </div>
+  <main>
+    <header>
+      <h1>Coinversor</h1>
+    </header>
+    <section id="exchange-container">
+      <h2>Converta valores para real</h2>
+
       <div>
         <p>Escolha uma moeda para o câmbio:</p>
         <select id="currency-select">
@@ -67,15 +66,14 @@
         </select>
 
         <p>Informe o valor a ser convertido:</p>
-        <input type="number" id="exchange-input">
-        <p>Resultado da conversão:</p>
-        <input type="text" id="result-input" readonly>
+        <input type="number" class="last-input" id="exchange-input">
       </div>
-      <div>
-        <button type="button" onclick="convert()">Converter</button>
+
+      <div class="button-container">
+        <button type="button" onclick="exchange()">Converter</button>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
   <script src="script.js"></script>
 </body>
 
