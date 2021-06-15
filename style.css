@@ -4,17 +4,22 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   background-color: #141518;
   font-family: Roboto, sans-serif;
   font-weight: 400;
+  font-size: 1.6rem;
 }
 
 main header {
   color: #38c065;
 
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2.4rem;
 
   margin-bottom: 16px;
 }
@@ -55,6 +60,7 @@ main section h2 {
 }
 
 main section div p {
+  font-size: 1.6rem;
   color: #f1f0e3;
 
   margin-bottom: 7.5px;
@@ -65,7 +71,7 @@ main section div input {
   outline: 0;
 
   height: 22.5px;
-  width: 175px;
+  width: 180px;
 
   margin-bottom: 22.5px;
 }
@@ -75,6 +81,8 @@ main section div input::-webkit-inner-spin-button {
 }
 
 main section div input {
+  font-size: 1.4rem;
+
   background: transparent;
   color: #f1f0e3;
 
@@ -92,6 +100,8 @@ main section div input {
 }
 
 main section div select {
+  font-size: 1.4rem;
+
   background: transparent;
   color: #38c065;
 
@@ -134,7 +144,7 @@ main section div select option {
 
   font-family: Pattaya, sans-serif;
   font-weight: 400;
-  font-size: 1.025rem;
+  font-size: 1.75rem;
 
   transition: background 0.5s;
 }
@@ -159,7 +169,7 @@ main section div select option {
 
 .left-column span {
   color: #5cac00;
-  font-size: 1.05rem;
+  font-size: 1.55rem;
 }
 
 .left-column span span {
@@ -171,8 +181,12 @@ main section div select option {
   padding: 0 7.5px; 
 }
 
+.left-column p:first-of-type {
+  margin-bottom: 8.5px;
+}
+
 .left-column p:last-of-type {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 .right-column {
@@ -187,4 +201,74 @@ main section div select option {
 
 .right-column span {
   color: #920707;
+}
+
+@media (max-width: 550px) {
+  html {
+    font-size: 56%;
+  }
+  
+  main section {
+    width: 90%;
+  }
+
+  main section div select,
+  main section div input {
+    width: 165px;
+  }
+
+  .left-column p:last-of-type {
+    margin-top: 26.75px;
+  }
+
+  .left-column p:first-of-type {
+    margin-bottom: 9.5px;
+  }
+}
+
+@media (max-width: 510px) {
+  html {
+    font-size: 62.5%;
+  }
+
+  main section div select,
+  main section div input {
+    width: 180px;
+  }
+  
+  .detailed-result-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-column {
+    padding: 0 0 25px 0;
+    border-right: 0;
+    border-bottom: 0.5px solid #920707;
+  }
+
+  .left-column p:last-of-type {
+    margin-top: 22.5px;
+  }
+
+  .right-column {
+    padding: 25px 0 0 0;
+    border-left: 0;
+    border-top: 0.5px solid #920707;
+  }
+
+  .right-column input {
+    border-radius: 30px 0 30px 0;
+  }
+}
+
+@media (max-width: 370px) {
+  html {
+    font-size: 53%;
+  }
+
+  main section div select,
+  main section div input {
+    width: 157.5px;
+  }
 }
