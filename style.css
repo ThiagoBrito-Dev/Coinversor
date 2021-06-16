@@ -21,7 +21,7 @@ main header {
   text-align: center;
   font-size: 2.4rem;
 
-  margin-bottom: 16px;
+  margin: 10px 0;
 }
 
 main header h1 {
@@ -34,7 +34,7 @@ main {
   justify-content: center;
   align-items: center;
 
-  height: 100vh;
+  min-height: 100vh;
 }
 
 main section {
@@ -43,7 +43,8 @@ main section {
   border: 1.5px solid #5cac00;
   box-shadow: 10px 10px 15px rgba(2.5, 2.5, 2.5, 0.95);
 
-  padding: 15px 20px; 
+  padding: 15px 20px;
+  margin-bottom: 22px;
 
   width: 500px;
 }
@@ -186,7 +187,7 @@ main section div select option {
 }
 
 .left-column p:last-of-type {
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
 .right-column {
@@ -218,7 +219,7 @@ main section div select option {
   }
 
   .left-column p:last-of-type {
-    margin-top: 26.75px;
+    margin-top: 26.5px;
   }
 
   .left-column p:first-of-type {
@@ -264,7 +265,7 @@ main section div select option {
 
 @media (max-width: 370px) {
   html {
-    font-size: 53%;
+    font-size: 50%;
   }
 
   main section div select,
