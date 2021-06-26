@@ -19,7 +19,7 @@ const leftColumn = document.createElement('div')
 leftColumn.setAttribute('class', 'left-column')
 
 const variationText = document.createElement('p')
-variationText.textContent = 'Taxa de variação:'
+variationText.textContent = 'Taxas de variação:'
 
 const bid = document.createElement('span')
 bid.textContent = 'BID: '
@@ -39,6 +39,7 @@ const exchangeResultText = document.createElement('p')
 exchangeResultText.textContent = 'Resultado da conversão:'
 
 const exchangeResult = document.createElement('input')
+exchangeResult.setAttribute('tabindex', '-1')
 exchangeResult.setAttribute('type', 'text')
 exchangeResult.setAttribute('class', 'read-only last-input')
 exchangeResult.setAttribute('readonly', 'true')
@@ -51,6 +52,7 @@ const highestQuotationText = document.createElement('p')
 highestQuotationText.innerHTML = 'Maior cotação <span>(dia)</span>:'
 
 const highestQuotationResult = document.createElement('input')
+highestQuotationResult.setAttribute('tabindex', '-1')
 highestQuotationResult.setAttribute('type', 'text')
 highestQuotationResult.setAttribute('class', 'read-only')
 highestQuotationResult.setAttribute('readonly', 'true')
@@ -59,13 +61,13 @@ const lowestQuotationText = document.createElement('p')
 lowestQuotationText.innerHTML = 'Menor cotação <span>(dia)</span>:'
 
 const lowestQuotationResult = document.createElement('input')
+lowestQuotationResult.setAttribute('tabindex', '-1')
 lowestQuotationResult.setAttribute('type', 'text')
 lowestQuotationResult.setAttribute('class', 'read-only last-input')
 lowestQuotationResult.setAttribute('readonly', 'true')
 // ---------- FIM ----------
 
 exchangeInput.value = 1
-exchangeInput.focus()
 
 function exchange() {
   const currency = currencySelect.value
@@ -82,7 +84,7 @@ function exchange() {
 
         let varBidValue = Number(varBid)
         let varAskValue = Number(pctChange)
-        let exchangeValue = convertToCurrencyFormat(valueToExchange * ask)
+        let exchangeValue = convertToCurrencyFormat(valueToExchange)
         let highestValue = convertToCurrencyFormat(Number(high))
         let lowestValue = convertToCurrencyFormat(Number(low))
 
