@@ -72,7 +72,13 @@ exchangeInput.value = 1
 function exchange() {
   const currency = currencySelect.value
   const exchangeType = `${currency}BRL`
-  const valueToExchange = Number(exchangeInput.value)
+
+  let valueToExchange
+  if (exchangeInput.value == 0) {
+    valueToExchange = exchangeInput.value = 1
+  } else {
+    valueToExchange = Number(exchangeInput.value)
+  }
 
   currencyInfoRequest.open('GET', `https://economia.awesomeapi.com.br/json/last/${currency}-BRL`)
 
