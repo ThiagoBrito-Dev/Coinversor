@@ -82,9 +82,9 @@ function exchange() {
         const currencyInfo = JSON.parse(currencyInfoRequest.responseText)
         const { varBid, pctChange, ask, high, low } = currencyInfo[exchangeType]
 
-        let varBidValue = Number(varBid)
-        let varAskValue = Number(pctChange)
-        let exchangeValue = convertToCurrencyFormat(valueToExchange)
+        let varBidValue = varBid.replace('.', ',')
+        let varAskValue = pctChange.replace('.', ',')
+        let exchangeValue = convertToCurrencyFormat(valueToExchange * ask)
         let highestValue = convertToCurrencyFormat(Number(high))
         let lowestValue = convertToCurrencyFormat(Number(low))
 
