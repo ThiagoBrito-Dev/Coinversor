@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --blue-green: #38c065;
+  --lemon-green: #5cac00;
+  --flaxen-white: #f1f0e3;
+  --red: #920707;
+  --opaque-black: rgba(9, 9, 9, 0.975);
+}
+
 html {
   font-size: 62.5%;
 }
@@ -15,62 +23,62 @@ body {
   font-size: 1.6rem;
 }
 
-main header {
-  color: #38c065;
-
-  text-align: center;
-  font-size: 2.4rem;
-
-  margin: 10px 0;
-}
-
-main header h1 {
-  font-family: Pattaya, sans-serif;
-}
-
-main {
+body main article {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   min-height: 100vh;
+  padding: 10px 0 22px;
 }
 
-main section {
-  background-color: #090909b5;
+article header {
+  color: var(--blue-green);
+
+  text-align: center;
+  font-size: 3.2rem;
+
+  margin-bottom: 10px;
+}
+
+header h1 {
+  font-family: Pattaya, sans-serif;
+}
+
+article div#exchange-container {
+  background-color: rgba(9, 9, 9, 0.75);
+
   border-radius: 7.5px;
-  border: 1.5px solid #5cac00;
+  border: 1.5px solid var(--lemon-green);
   box-shadow: 10px 10px 15px rgba(2.5, 2.5, 2.5, 0.95);
 
   padding: 15px 20px;
-  margin-bottom: 22px;
-
   width: 500px;
 }
 
-main section h2 {
-  color: #38c065;
+div#exchange-container section h2 {
+  color: var(--blue-green);
 
   margin-bottom: 25px;
   text-align: center;
 }
 
-.last-title {
+h2.last-title {
   margin-top: 30px;
 }
 
-main section div p {
+section p {
   font-size: 1.6rem;
   color: #f1f0e3;
 
   margin-bottom: 7.5px;
 }
 
-main section div select,
-main section div input {
+section select,
+section input {
   background: transparent;
-  border: 1.5px solid #5cac00;
+  border: 1.5px solid var(--lemon-green);
 
   outline: 0;
 
@@ -82,15 +90,15 @@ main section div input {
   transition-duration: 0.75s;
 }
 
-.can-be-focused:focus {
-  border: 1.5px solid #920707;
+section .can-be-focused:focus {
+  border: 1.5px solid var(--red);
 }
 
-main section div input::-webkit-inner-spin-button {
+section input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-main section div input {
+section input {
   font-size: 1.4rem;
 
   color: #f1f0e3;
@@ -99,49 +107,53 @@ main section div input {
   padding-left: 11.5px;
 }
 
-.last-input {
+input.last {
   margin-bottom: 0;
 }
 
-.read-only {
+input.read-only {
   cursor: not-allowed;
 }
 
-main section div select {
+section select {
   font-size: 1.4rem;
-  color: #38c065;
+  color: var(--blue-green);
   padding-left: 5px;
 }
 
-main section div select::-webkit-scrollbar {
+section select::-webkit-scrollbar {
   width: 11px;
 }
 
-main section div select::-webkit-scrollbar-thumb {
-  background: #920707;
+section select::-webkit-scrollbar-thumb {
+  background-color: var(--red);
   border-radius: 10px;
 }
 
-main section div select::-webkit-scrollbar-track {
-  background: #090909f9;
+section select::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(145, 7, 7, 0.75);
 }
 
-main section div select option {
-  background: #090909f9;
+section select::-webkit-scrollbar-track {
+  background-color: var(--opaque-black);
+}
+
+section select option {
+  background-color: var(--opaque-black);
   color: #f1f0e3;
 }
 
-.button-container {
+div#exchange-container footer.button-container {
   display: flex;
   justify-content: center;
 }
 
-.button-container button {
+footer.button-container button {
   margin-top: 30px;
   width: 145px;
   height: 30px;
 
-  background: #38c065;
+  background-color: var(--blue-green);
 
   border: 0;
   border-radius: 2px;
@@ -153,80 +165,81 @@ main section div select option {
   transition-duration: 0.5s;
 }
 
-.button-container button:hover,
-.button-container button:focus {
-  background: #5cac00;
+footer.button-container button:hover,
+footer.button-container button:focus {
+  background-color: var(--lemon-green);
 }
 
-.detailed-result-container {
+div#exchange-container section#result-wrapper div.detailed-result-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.left-column, .right-column {
+div.detailed-result-container div.left-column,
+div.detailed-result-container div.right-column {
   padding: 5px 0 10px 0;
 }
 
-.left-column {
-  border-right: 0.5px solid #920707;
-  color: #38c065;
+div.detailed-result-container div.left-column {
+  border-right: 0.5px solid var(--red);
+  color: var(--blue-green);
 }
 
-.left-column span {
-  color: #5cac00;
+div.detailed-result-container div.left-column span {
+  color: var(--lemon-green);
   font-size: 1.55rem;
 }
 
-.left-column span span {
-  color: #920707;
+div.detailed-result-container div.left-column span span {
+  color: var(--red);
 }
 
-.divider {
-  color: #38c065;
-  padding: 0 7.5px; 
+span.divider {
+  color: var(--blue-green);
+  padding: 0 7.5px;
 }
 
-.left-column p:first-of-type {
+div.detailed-result-container div.left-column p:first-of-type {
   margin-bottom: 8.5px;
 }
 
-.left-column p:last-of-type {
+div.detailed-result-container div.left-column p:last-of-type {
   margin-top: 24.75px;
 }
 
-.right-column {
-  border-left: 0.5px solid #920707;
+div.detailed-result-container div.right-column {
+  border-left: 0.5px solid var(--red);
   padding-left: 20px;
 }
 
-.right-column input {
+div.detailed-result-container div.right-column input {
   padding-left: 11.5px;
   border-radius: 0 30px 0 30px;
 }
 
-.right-column span {
-  color: #920707;
+div.detailed-result-container div.right-column span {
+  color: var(--red);
 }
 
 @media (max-width: 550px) {
   html {
     font-size: 56%;
   }
-  
-  main section {
+
+  article div#exchange-container {
     width: 90%;
   }
 
-  main section div select,
-  main section div input {
+  div#exchange-container section select,
+  div#exchange-container section input {
     width: 165px;
   }
 
-  .left-column p:last-of-type {
+  div.detailed-result-container div.left-column p:last-of-type {
     margin-top: 26.5px;
   }
 
-  .left-column p:first-of-type {
+  div.detailed-result-container div.left-column p:first-of-type {
     margin-bottom: 9.5px;
   }
 }
@@ -236,44 +249,44 @@ main section div select option {
     font-size: 62.5%;
   }
 
-  main section div select,
-  main section div input {
+  div#exchange-container section select,
+  div#exchange-container section input {
     width: 180px;
   }
-  
-  .detailed-result-container {
+
+  div#exchange-container section#result-wrapper div.detailed-result-container {
     display: flex;
     flex-direction: column;
   }
 
-  .left-column {
+  div.detailed-result-container div.left-column {
     padding: 0 0 25px 0;
     border-right: 0;
-    border-bottom: 0.5px solid #920707;
+    border-bottom: 0.5px solid var(--red);
   }
 
-  .left-column p:last-of-type {
+  div.detailed-result-container div.left-column p:last-of-type {
     margin-top: 22.5px;
   }
 
-  .right-column {
+  div.detailed-result-container div.right-column {
     padding: 25px 0 0 0;
     border-left: 0;
-    border-top: 0.5px solid #920707;
+    border-top: 0.5px solid var(--red);
   }
 
-  .right-column input {
+  div.detailed-result-container div.right-column input {
     border-radius: 30px 0 30px 0;
   }
 }
 
 @media (max-width: 370px) {
   html {
-    font-size: 50%;
+    font-size: 55%;
   }
 
-  main section div select,
-  main section div input {
+  div#exchange-container section select,
+  div#exchange-container section input {
     width: 157.5px;
   }
 }

@@ -1,143 +1,236 @@
-const currencyInfoRequest = new XMLHttpRequest()
+async function exchange() {
+  const currency = document.querySelector("select").value;
+  const exchangeInput = document.querySelector("input#exchange-input");
+  const exchangeType = `${currency}BRL`;
+  let valueToExchange;
 
-const section = document.querySelector('#exchange-container')
-const currencySelect = document.querySelector('#currency-select')
-const exchangeInput = document.querySelector('#exchange-input')
-const buttonContainer = document.querySelector('.button-container')
-
-// ---------- SECTION ----------
-const sectionLastTitle = document.createElement('h2')
-sectionLastTitle.setAttribute('class', 'last-title')
-sectionLastTitle.textContent = 'Detalhes da conversão'
-
-// ---------- GRID ----------
-const detailedResultGrid = document.createElement('div')
-detailedResultGrid.setAttribute('class', 'detailed-result-container')
-
-// ---------- COLUNA ESQUERDA ----------
-const leftColumn = document.createElement('div')
-leftColumn.setAttribute('class', 'left-column')
-
-const variationText = document.createElement('p')
-variationText.textContent = 'Taxas de variação:'
-
-const bid = document.createElement('span')
-bid.textContent = 'BID: '
-const varBidResult = document.createElement('span')
-bid.appendChild(varBidResult)
-
-const divider = document.createElement('span')
-divider.setAttribute('class', 'divider')
-divider.textContent = '|'
-
-const ask = document.createElement('span')
-ask.textContent = 'ASK: '
-const varAskResult = document.createElement('span')
-ask.appendChild(varAskResult)
-
-const exchangeResultText = document.createElement('p')
-exchangeResultText.textContent = 'Resultado da conversão:'
-
-const exchangeResult = document.createElement('input')
-exchangeResult.setAttribute('tabindex', '-1')
-exchangeResult.setAttribute('type', 'text')
-exchangeResult.setAttribute('class', 'read-only last-input')
-exchangeResult.setAttribute('readonly', 'true')
-
-// ---------- COLUNA DIREITA ----------
-const rightColumn = document.createElement('div')
-rightColumn.setAttribute('class', 'right-column')
-
-const highestQuotationText = document.createElement('p')
-highestQuotationText.innerHTML = 'Maior cotação <span>(dia)</span>:'
-
-const highestQuotationResult = document.createElement('input')
-highestQuotationResult.setAttribute('tabindex', '-1')
-highestQuotationResult.setAttribute('type', 'text')
-highestQuotationResult.setAttribute('class', 'read-only')
-highestQuotationResult.setAttribute('readonly', 'true')
-
-const lowestQuotationText = document.createElement('p')
-lowestQuotationText.innerHTML = 'Menor cotação <span>(dia)</span>:'
-
-const lowestQuotationResult = document.createElement('input')
-lowestQuotationResult.setAttribute('tabindex', '-1')
-lowestQuotationResult.setAttribute('type', 'text')
-lowestQuotationResult.setAttribute('class', 'read-only last-input')
-lowestQuotationResult.setAttribute('readonly', 'true')
-// ---------- FIM ----------
-
-exchangeInput.value = 1
-
-function exchange() {
-  const currency = currencySelect.value
-  const exchangeType = `${currency}BRL`
-
-  let valueToExchange
   if (exchangeInput.value == 0) {
-    valueToExchange = exchangeInput.value = 1
+    valueToExchange = exchangeInput.value = 1;
   } else {
-    valueToExchange = Number(exchangeInput.value)
+    valueToExchange = Number(exchangeInput.value);
   }
 
-  currencyInfoRequest.open('GET', `https://economia.awesomeapi.com.br/json/last/${currency}-BRL`)
-
-  currencyInfoRequest.onreadystatechange = () => {
-    if (currencyInfoRequest.readyState == 4) {
-      if (currencyInfoRequest.status == 200) {
-        const currencyInfo = JSON.parse(currencyInfoRequest.responseText)
-        const { varBid, pctChange, ask, high, low } = currencyInfo[exchangeType]
-
-        let varBidValue = varBid.replace('.', ',')
-        let varAskValue = pctChange.replace('.', ',')
-        let exchangeValue = convertToCurrencyFormat(valueToExchange * ask)
-        let highestValue = convertToCurrencyFormat(Number(high))
-        let lowestValue = convertToCurrencyFormat(Number(low))
-
-        displayElements(varBidValue, varAskValue, exchangeValue, highestValue, lowestValue)
+  try {
+    const currencyInfo = await fetch(
+      `https://economia.awesomeapi.com.br/json/last/${currency}-BRL`
+    ).then((response) => {
+      if (response.status === 200 && response.ok) {
+        return response.json();
+      } else {
+        throw new Error(
+          "Desculpe, mas devido a algum erro, não foi possível realizar o câmbio desta moeda. Por favor, tente novamente."
+        );
       }
-    }
-  }
+    });
 
-  currencyInfoRequest.send()
+    const { varBid, pctChange, ask, high, low } = currencyInfo[exchangeType];
+    const currencyData = {
+      varBidValue: varBid.replace(".", ","),
+      varAskValue: pctChange.replace(".", ","),
+      exchangeValue: convertToCurrencyFormat(valueToExchange * ask),
+      highestValue: convertToCurrencyFormat(Number(high)),
+      lowestValue: convertToCurrencyFormat(Number(low)),
+    };
+
+    displayElements(currencyData);
+    exchangeInput.value = "";
+    exchangeInput.focus();
+  } catch (error) {
+    alert(error.message);
+  }
 }
 
 function convertToCurrencyFormat(value) {
-  return value.toLocaleString(
-    'pt-BR',
-    {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 4
-    }
-  )
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 4,
+  });
 }
 
-function displayElements(varBidValue, varAskValue, exchangeValue, highestValue, lowestValue) {
-  varBidResult.textContent = `${varBidValue}%`
-  varAskResult.textContent = `${varAskValue}%`
-  exchangeResult.value = exchangeValue
-  lowestQuotationResult.value = lowestValue
-  highestQuotationResult.value = highestValue
+function createResultSection() {
+  let resultSection = document.createElement("section");
+  resultSection.setAttribute("id", "result-wrapper");
+  resultSection = appendResultSectionElements(resultSection);
 
-  rightColumn.appendChild(highestQuotationText)
-  rightColumn.appendChild(highestQuotationResult)
-  rightColumn.appendChild(lowestQuotationText)
-  rightColumn.appendChild(lowestQuotationResult)
+  return resultSection;
+}
 
-  leftColumn.appendChild(variationText)
-  leftColumn.appendChild(bid)
-  leftColumn.appendChild(divider)
-  leftColumn.appendChild(ask)
-  leftColumn.appendChild(exchangeResultText)
-  leftColumn.appendChild(exchangeResult)
+function appendResultSectionElements(parent) {
+  const sectionTitle = createSectionTitle();
+  const resultGrid = createResultGrid();
 
-  detailedResultGrid.appendChild(leftColumn)
-  detailedResultGrid.appendChild(rightColumn)
+  parent.appendChild(sectionTitle);
+  parent.appendChild(resultGrid);
 
-  section.insertBefore(sectionLastTitle, buttonContainer)
-  section.insertBefore(detailedResultGrid, buttonContainer)
+  return parent;
+}
 
-  exchangeInput.value = ''
-  exchangeInput.focus()
+function createSectionTitle() {
+  const sectionTitle = document.createElement("h2");
+  sectionTitle.setAttribute("class", "last-title");
+  sectionTitle.textContent = "Detalhes da conversão";
+
+  return sectionTitle;
+}
+
+function createResultGrid() {
+  let resultGrid = document.createElement("div");
+  resultGrid.setAttribute("class", "detailed-result-container");
+
+  resultGrid = appendResultGridColumns(
+    resultGrid,
+    createGridLeftColumn(),
+    createGridRightColumn()
+  );
+
+  return resultGrid;
+}
+
+function appendResultGridColumns(parent, leftColumn, rightColumn) {
+  parent.appendChild(leftColumn);
+  parent.appendChild(rightColumn);
+
+  return parent;
+}
+
+function createGridLeftColumn() {
+  let leftColumn = document.createElement("div");
+  leftColumn.setAttribute("class", "left-column");
+
+  appendGridLeftColumnElements(leftColumn);
+  return leftColumn;
+}
+
+function createGridLeftColumnElements() {
+  const variationText = document.createElement("p");
+  variationText.textContent = "Taxas de variação:";
+
+  const bid = document.createElement("span");
+  bid.textContent = "BID: ";
+  const varBidResult = document.createElement("span");
+  varBidResult.setAttribute("id", "var-bid-result");
+  bid.appendChild(varBidResult);
+
+  const divider = document.createElement("span");
+  divider.setAttribute("class", "divider");
+  divider.textContent = "|";
+
+  const ask = document.createElement("span");
+  ask.textContent = "ASK: ";
+  const varAskResult = document.createElement("span");
+  varAskResult.setAttribute("id", "var-ask-result");
+  ask.appendChild(varAskResult);
+
+  const exchangeResultText = document.createElement("p");
+  exchangeResultText.textContent = "Resultado da conversão:";
+
+  const exchangeResult = document.createElement("input");
+  exchangeResult.setAttribute("type", "text");
+  exchangeResult.setAttribute("id", "exchange-result");
+  exchangeResult.setAttribute("class", "read-only last");
+  exchangeResult.setAttribute("tabindex", "-1");
+  exchangeResult.setAttribute("readonly", "true");
+
+  return [variationText, bid, divider, ask, exchangeResultText, exchangeResult];
+}
+
+function appendGridLeftColumnElements(parent) {
+  const [variationText, bid, divider, ask, exchangeResultText, exchangeResult] =
+    createGridLeftColumnElements();
+
+  parent.appendChild(variationText);
+  parent.appendChild(bid);
+  parent.appendChild(divider);
+  parent.appendChild(ask);
+  parent.appendChild(exchangeResultText);
+  parent.appendChild(exchangeResult);
+
+  return parent;
+}
+
+function createGridRightColumn() {
+  let rightColumn = document.createElement("div");
+  rightColumn.setAttribute("class", "right-column");
+  rightColumn = appendGridRightColumnElements(rightColumn);
+
+  return rightColumn;
+}
+
+function createGridRightColumnElements() {
+  const highestQuotationText = document.createElement("p");
+  highestQuotationText.innerHTML = "Maior cotação <span>(dia)</span>:";
+
+  const highestQuotationResult = document.createElement("input");
+  highestQuotationResult.setAttribute("type", "text");
+  highestQuotationResult.setAttribute("id", "highest-quot-result");
+  highestQuotationResult.setAttribute("class", "read-only");
+  highestQuotationResult.setAttribute("tabindex", "-1");
+  highestQuotationResult.setAttribute("readonly", "true");
+
+  const lowestQuotationText = document.createElement("p");
+  lowestQuotationText.innerHTML = "Menor cotação <span>(dia)</span>:";
+
+  const lowestQuotationResult = document.createElement("input");
+  lowestQuotationResult.setAttribute("type", "text");
+  lowestQuotationResult.setAttribute("id", "lowest-quot-result");
+  lowestQuotationResult.setAttribute("class", "read-only last");
+  lowestQuotationResult.setAttribute("tabindex", "-1");
+  lowestQuotationResult.setAttribute("readonly", "true");
+
+  return [
+    highestQuotationText,
+    highestQuotationResult,
+    lowestQuotationText,
+    lowestQuotationResult,
+  ];
+}
+
+function appendGridRightColumnElements(parent) {
+  const [
+    highestQuotationText,
+    highestQuotationResult,
+    lowestQuotationText,
+    lowestQuotationResult,
+  ] = createGridRightColumnElements();
+
+  parent.appendChild(highestQuotationText);
+  parent.appendChild(highestQuotationResult);
+  parent.appendChild(lowestQuotationText);
+  parent.appendChild(lowestQuotationResult);
+
+  return parent;
+}
+
+function displayElements(data) {
+  const exchangeContainer = document.querySelector("div#exchange-container");
+  const result = document.querySelector("section#result-wrapper");
+  const buttonContainer = document.querySelector("footer.button-container");
+  const resultSection = createResultSection();
+
+  insertResultData(resultSection, data);
+
+  if (result) {
+    exchangeContainer.removeChild(result);
+  }
+
+  exchangeContainer.insertBefore(resultSection, buttonContainer);
+}
+
+function insertResultData(resultSection, data) {
+  const varBidResult = resultSection.querySelector("span#var-bid-result");
+  const varAskResult = resultSection.querySelector("span#var-ask-result");
+  const exchangeResult = resultSection.querySelector("input#exchange-result");
+  const highestQuotationResult = resultSection.querySelector(
+    "input#highest-quot-result"
+  );
+  const lowestQuotationResult = resultSection.querySelector(
+    "input#lowest-quot-result"
+  );
+
+  varBidResult.textContent = `${data.varBidValue}%`;
+  varAskResult.textContent = `${data.varAskValue}%`;
+  exchangeResult.value = data.exchangeValue;
+  lowestQuotationResult.value = data.lowestValue;
+  highestQuotationResult.value = data.highestValue;
 }
