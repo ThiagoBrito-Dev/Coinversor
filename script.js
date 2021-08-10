@@ -1,13 +1,48 @@
+function formatInputValue() {
+  const currency = document.querySelector("select").value;
+  const exchangeInput = document.querySelector("input#exchange-input");
+
+  if (exchangeInput.value.indexOf(",") === -1) {
+    let inputValue = Number(exchangeInput.value.replace(/\D/g, ""));
+
+    if (!inputValue) {
+      inputValue = 1;
+    }
+
+    inputValue = convertToCurrencyFormat(inputValue, currency, 0);
+    exchangeInput.value = inputValue;
+  } else {
+    const splittedInputValue = exchangeInput.value.split(",");
+    const lastPosition = splittedInputValue.length - 1;
+
+    if (
+      splittedInputValue.length > 2 &&
+      splittedInputValue[lastPosition] === ""
+    ) {
+      splittedInputValue.pop();
+    }
+
+    splittedInputValue[0] = Number(splittedInputValue[0].replace(/\D/g, ""));
+    splittedInputValue[0] = convertToCurrencyFormat(
+      splittedInputValue[0],
+      currency,
+      0
+    );
+    splittedInputValue[1] = splittedInputValue[1].replace(/\D/g, "");
+    exchangeInput.value = splittedInputValue.join(",");
+  }
+}
+
 async function exchange() {
   const currency = document.querySelector("select").value;
   const exchangeInput = document.querySelector("input#exchange-input");
   const exchangeType = `${currency}BRL`;
-  let valueToExchange;
+  let valueToExchange = Number(
+    exchangeInput.value.replace(/[^0-9\,]/g, "").replace(",", ".")
+  );
 
-  if (exchangeInput.value == 0) {
+  if (!valueToExchange) {
     valueToExchange = exchangeInput.value = 1;
-  } else {
-    valueToExchange = Number(exchangeInput.value);
   }
 
   try {
@@ -27,9 +62,9 @@ async function exchange() {
     const currencyData = {
       varBidValue: varBid.replace(".", ","),
       varAskValue: pctChange.replace(".", ","),
-      exchangeValue: convertToCurrencyFormat(valueToExchange * ask),
-      highestValue: convertToCurrencyFormat(Number(high)),
-      lowestValue: convertToCurrencyFormat(Number(low)),
+      exchangeValue: convertToCurrencyFormat(valueToExchange * ask, "BRL", 4),
+      highestValue: convertToCurrencyFormat(Number(high), "BRL", 4),
+      lowestValue: convertToCurrencyFormat(Number(low), "BRL", 4),
     };
 
     displayElements(currencyData);
@@ -40,11 +75,11 @@ async function exchange() {
   }
 }
 
-function convertToCurrencyFormat(value) {
+function convertToCurrencyFormat(value, currency, minimumFractionDigits) {
   return value.toLocaleString("pt-BR", {
     style: "currency",
-    currency: "BRL",
-    minimumFractionDigits: 4,
+    currency,
+    minimumFractionDigits,
   });
 }
 

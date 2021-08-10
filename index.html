@@ -33,7 +33,7 @@
         </header>
 
         <div id="exchange-container">
-          <section>
+          <section onchange="formatInputValue()">
             <h2>Converta valores para real</h2>
 
             <div>
@@ -75,10 +75,11 @@
 
               <p>Informe o valor a ser convertido:</p>
               <input
-                type="number"
+                type="text"
                 class="last can-be-focused"
                 id="exchange-input"
-                value="1"
+                oninput="formatInputValue()"
+                value="US$ 1"
               />
             </div>
           </section>
