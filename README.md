@@ -46,8 +46,9 @@
 
 - [x] Realizar e exibir o resultado do câmbio monetário;
 - [x] Exibir as taxas de variação entre o valor de compra e venda da moeda selecionada;
-- [x] Exibir o valor atual da maior e da menor cotação do dia; e
-- [x] Formatar os dados monetários de entrada e saída;
+- [x] Exibir o valor atual da maior e da menor cotação do dia;
+- [x] Formatar os dados monetários de entrada e saída; e
+- [x] Implementar a responsividade da aplicação;
 
 <hr>
 
@@ -66,7 +67,8 @@ $ git clone <https://github.com/ThiagoBrito-Dev/Podcastr>
 # Acesse a pasta do projeto pelo terminal de comando
 $ cd .../Coinversor
 
-# E, para finalizar, basta abrir o arquivo "index.html" no seu navegador, ou ainda, utilizando o Live Server, caso você o possua.
+# E, para finalizar, basta abrir o arquivo "index.html" no seu navegador, ou ainda,
+# utilizando o Live Server, caso você o possua.
 ```
 
 <hr>
