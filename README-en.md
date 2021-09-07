@@ -67,8 +67,7 @@ $ git clone <https://github.com/ThiagoBrito-Dev/Podcastr>
 # Access the project folder from the command terminal
 $ cd .../Coinversor
 
-# Finally, just open the "index.html" file in your browser, or even using
-# Live Server, if you have it.
+# Finally, just open the "index.html" file in your browser, or even using Live Server, if you have it.
 ```
 
 <hr>
