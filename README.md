@@ -29,7 +29,7 @@
 ### 🎯 Sobre o projeto
 
 <p>
-  Possuindo mais de 30 opções de moedas, o Coinversor é uma aplicação financeira, desenvolvida com JavaScript puro, para cálculo de conversões monetárias, tal qual, obtenção de informações relacionadas às moedas, como as taxas de variação entre os valores de compra e venda (BID e ASK, respectivamente) e a maior e a menor cotação registrada no dia em questão.
+  Possuindo mais de 30 opções de moedas, o Coinversor é uma aplicação financeira, desenvolvida com JavaScript puro, para cálculo de conversões monetárias, bem como, obtenção de informações relacionadas às moedas, como as taxas de variação entre os valores de compra e venda (BID e ASK, respectivamente) e a maior e a menor cotação registrada no dia em questão.
 </p>
 
 <hr>
