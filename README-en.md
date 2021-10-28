@@ -109,6 +109,6 @@ $ cd .../Coinversor
 
 <div>
   <a href="https://github.com/ThiagoBrito-Dev/Coinversor/blob/main/README.md">Portuguese (pt-br)</a> 
-  |   
+  |
   <a href="https://github.com/ThiagoBrito-Dev/Coinversor/blob/main/README-en.md">English (en-us)</a>
 </div>
