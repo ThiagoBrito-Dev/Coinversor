@@ -80,7 +80,7 @@ $ cd .../Coinversor
 ### 👨🏽‍🎓 Author
 
 <div align="center">
-  <img src="https://github.com/ThiagoBrito-Dev.png" width="275px" />
+  <img src="https://github.com/ThiagoBrito-Dev.png" width="250px" />
 
   <br />
 
