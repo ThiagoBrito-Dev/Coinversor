@@ -14,7 +14,7 @@
   </div>
 
   <div>
-    <img src="https://img.shields.io/github/license/ThiagoBrito-Dev/Podcastr?color=920707&style=for-the-badge" />
+    <img src="https://img.shields.io/github/license/trybrito/Podcastr?color=920707&style=for-the-badge" />
     <a href="https://coinversor.netlify.app/">
       <img src="https://api.netlify.com/api/v1/badges/30dff3ac-7dfc-41ee-abac-888ef4901e49/deploy-status" /></a>
     <img src="https://img.shields.io/static/v1?label=version&message=1.0.0&color=920707&style=for-the-badge" />
@@ -59,7 +59,7 @@ Well, having everything ready and installed, we can proceed to the step by step 
 
 ```bash
 # First of all, clone this repo using GIT
-$ git clone <https://github.com/ThiagoBrito-Dev/Podcastr>
+$ git clone <https://github.com/trybrito/Podcastr>
 
 # Access the project folder from the command terminal
 $ cd .../Coinversor
@@ -80,7 +80,7 @@ $ cd .../Coinversor
 ### 👨🏽‍🎓 Author
 
 <div align="center">
-  <img src="https://github.com/ThiagoBrito-Dev.png" width="250px" />
+  <img src="https://github.com/trybrito.png" width="250px" />
 
   <br />
 
@@ -108,7 +108,7 @@ $ cd .../Coinversor
 ### 📚 README versions
 
 <div>
-  <a href="https://github.com/ThiagoBrito-Dev/Coinversor/blob/main/README.md">Portuguese (pt-br)</a>
+  <a href="https://github.com/trybrito/Coinversor/blob/main/README.md">Portuguese (pt-br)</a>
   |
-  <a href="https://github.com/ThiagoBrito-Dev/Coinversor/blob/main/README-en.md">English (en-us)</a>
+  <a href="https://github.com/trybrito/Coinversor/blob/main/README-en.md">English (en-us)</a>
 </div>
