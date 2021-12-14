@@ -12,14 +12,11 @@
 
     <title>Coinversor</title>
 
-    <link rel="shortcut icon" href="assets/favicon.svg" type="image/svg" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Pattaya&family=Roboto&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
@@ -27,68 +24,65 @@
 
   <body>
     <main>
-      <article>
-        <header>
-          <h1>Coinversor</h1>
-        </header>
+      <h1>Coinversor</h1>
 
-        <div id="exchange-container">
-          <section onchange="formatInputValue()">
-            <h2>Converta valores para real</h2>
+      <div class="exchange-card">
+        <section class="data-input">
+          <h2>Converta valores para real</h2>
 
-            <div>
-              <p>Escolha uma moeda para o câmbio:</p>
-              <select class="can-be-focused">
-                <option value="THB">Baht Tailandês</option>
-                <option value="BOB">Boliviano</option>
-                <option value="DKK">Coroa Dinamarquesa</option>
-                <option value="NOK">Coroa Norueguesa</option>
-                <option value="SEK">Coroa Sueca</option>
-                <option value="AED">Dirham dos Emirados</option>
-                <option value="USD" selected>Dólar Americano</option>
-                <option value="AUD">Dólar Australiano</option>
-                <option value="CAD">Dólar Canadense</option>
-                <option value="NZD">Dólar Neozelandês</option>
-                <option value="TWD">Dólar Taiuanês</option>
-                <option value="SGD">Dólar de Cingapura</option>
-                <option value="HKD">Dólar de Hong Kong</option>
-                <option value="EUR">Euro</option>
-                <option value="CHF">Franco Suíço</option>
-                <option value="PYG">Guarani Paraguaio</option>
-                <option value="JPY">Iene Japonês</option>
-                <option value="GBP">Libra Esterlina</option>
-                <option value="TRY">Nova Lira Turca</option>
-                <option value="ILS">Novo Shekel Israelense</option>
-                <option value="ARS">Peso Argentino</option>
-                <option value="CLP">Peso Chileno</option>
-                <option value="COP">Peso Colombiano</option>
-                <option value="MXN">Peso Mexicano</option>
-                <option value="UYU">Peso Uruguaio</option>
-                <option value="ZAR">Rand Sul-Africano</option>
-                <option value="SAR">Riyal Saudita</option>
-                <option value="RUB">Rublo Russo</option>
-                <option value="INR">Rúpia Indiana</option>
-                <option value="PEN">Sol do Peru</option>
-                <option value="CNY">Yuan Chinês</option>
-                <option value="PLN">Zlóti Polonês</option>
-              </select>
+          <div>
+            <p>Escolha uma moeda para o câmbio:</p>
+            <select onchange="formatInputValue()">
+              <option value="THB">Baht Tailandês</option>
+              <option value="BOB">Boliviano</option>
+              <option value="DKK">Coroa Dinamarquesa</option>
+              <option value="NOK">Coroa Norueguesa</option>
+              <option value="SEK">Coroa Sueca</option>
+              <option value="AED">Dirham dos Emirados</option>
+              <option value="USD" selected>Dólar Americano</option>
+              <option value="AUD">Dólar Australiano</option>
+              <option value="CAD">Dólar Canadense</option>
+              <option value="NZD">Dólar Neozelandês</option>
+              <option value="TWD">Dólar Taiuanês</option>
+              <option value="SGD">Dólar de Cingapura</option>
+              <option value="HKD">Dólar de Hong Kong</option>
+              <option value="EUR">Euro</option>
+              <option value="CHF">Franco Suíço</option>
+              <option value="PYG">Guarani Paraguaio</option>
+              <option value="JPY">Iene Japonês</option>
+              <option value="GBP">Libra Esterlina</option>
+              <option value="TRY">Nova Lira Turca</option>
+              <option value="ILS">Novo Shekel Israelense</option>
+              <option value="ARS">Peso Argentino</option>
+              <option value="CLP">Peso Chileno</option>
+              <option value="COP">Peso Colombiano</option>
+              <option value="MXN">Peso Mexicano</option>
+              <option value="UYU">Peso Uruguaio</option>
+              <option value="ZAR">Rand Sul-Africano</option>
+              <option value="SAR">Riyal Saudita</option>
+              <option value="RUB">Rublo Russo</option>
+              <option value="INR">Rúpia Indiana</option>
+              <option value="PEN">Sol do Peru</option>
+              <option value="CNY">Yuan Chinês</option>
+              <option value="PLN">Zlóti Polonês</option>
+            </select>
 
-              <p>Informe o valor a ser convertido:</p>
-              <input
-                type="text"
-                class="last can-be-focused"
-                id="exchange-input"
-                oninput="formatInputValue()"
-                value="US$ 1"
-              />
-            </div>
-          </section>
+            <label for="exchange-input"
+              >Informe o valor a ser convertido:</label
+            >
+            <input
+              type="text"
+              id="exchange-input"
+              oninput="formatInputValue()"
+              value="US$ 1"
+            />
+          </div>
+        </section>
 
-          <footer class="button-container">
-            <button type="button" onclick="exchange()">Converter</button>
-          </footer>
+        <div class="btn-container">
+          <button type="button" onclick="exchange()">Converter</button>
         </div>
-      </article>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>

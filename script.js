@@ -85,7 +85,7 @@ function convertToCurrencyFormat(value, currency, minimumFractionDigits) {
 
 function createResultSection() {
   let resultSection = document.createElement("section");
-  resultSection.setAttribute("id", "result-wrapper");
+  resultSection.setAttribute("class", "result");
   resultSection = appendResultSectionElements(resultSection);
 
   return resultSection;
@@ -103,7 +103,6 @@ function appendResultSectionElements(parent) {
 
 function createSectionTitle() {
   const sectionTitle = document.createElement("h2");
-  sectionTitle.setAttribute("class", "last-title");
   sectionTitle.textContent = "Detalhes da conversão";
 
   return sectionTitle;
@@ -111,7 +110,7 @@ function createSectionTitle() {
 
 function createResultGrid() {
   let resultGrid = document.createElement("div");
-  resultGrid.setAttribute("class", "detailed-result-container");
+  resultGrid.setAttribute("class", "result-container");
 
   resultGrid = appendResultGridColumns(
     resultGrid,
@@ -157,14 +156,13 @@ function createGridLeftColumnElements() {
   varAskResult.setAttribute("id", "var-ask-result");
   ask.appendChild(varAskResult);
 
-  const exchangeResultText = document.createElement("p");
+  const exchangeResultText = document.createElement("label");
+  exchangeResultText.setAttribute("for", "exchange-result");
   exchangeResultText.textContent = "Resultado da conversão:";
 
   const exchangeResult = document.createElement("input");
   exchangeResult.setAttribute("type", "text");
   exchangeResult.setAttribute("id", "exchange-result");
-  exchangeResult.setAttribute("class", "read-only last");
-  exchangeResult.setAttribute("tabindex", "-1");
   exchangeResult.setAttribute("readonly", "true");
 
   return [variationText, bid, divider, ask, exchangeResultText, exchangeResult];
@@ -193,24 +191,22 @@ function createGridRightColumn() {
 }
 
 function createGridRightColumnElements() {
-  const highestQuotationText = document.createElement("p");
+  const highestQuotationText = document.createElement("label");
+  highestQuotationText.setAttribute("for", "highest-quot-result");
   highestQuotationText.innerHTML = "Maior cotação <span>(dia)</span>:";
 
   const highestQuotationResult = document.createElement("input");
   highestQuotationResult.setAttribute("type", "text");
   highestQuotationResult.setAttribute("id", "highest-quot-result");
-  highestQuotationResult.setAttribute("class", "read-only");
-  highestQuotationResult.setAttribute("tabindex", "-1");
   highestQuotationResult.setAttribute("readonly", "true");
 
-  const lowestQuotationText = document.createElement("p");
+  const lowestQuotationText = document.createElement("label");
+  lowestQuotationText.setAttribute("for", "lowest-quot-result");
   lowestQuotationText.innerHTML = "Menor cotação <span>(dia)</span>:";
 
   const lowestQuotationResult = document.createElement("input");
   lowestQuotationResult.setAttribute("type", "text");
   lowestQuotationResult.setAttribute("id", "lowest-quot-result");
-  lowestQuotationResult.setAttribute("class", "read-only last");
-  lowestQuotationResult.setAttribute("tabindex", "-1");
   lowestQuotationResult.setAttribute("readonly", "true");
 
   return [
@@ -238,9 +234,9 @@ function appendGridRightColumnElements(parent) {
 }
 
 function displayElements(data) {
-  const exchangeContainer = document.querySelector("div#exchange-container");
-  const result = document.querySelector("section#result-wrapper");
-  const buttonContainer = document.querySelector("footer.button-container");
+  const exchangeContainer = document.querySelector("div.exchange-card");
+  const result = document.querySelector("section.result");
+  const buttonContainer = document.querySelector("div.btn-container");
   const resultSection = createResultSection();
 
   insertResultData(resultSection, data);
