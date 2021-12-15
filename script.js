@@ -71,7 +71,7 @@ async function exchange() {
     exchangeInput.value = "";
     exchangeInput.focus();
   } catch (error) {
-    alert(error.message);
+    console.log(error.message);
   }
 }
 
@@ -140,21 +140,9 @@ function createGridLeftColumnElements() {
   const variationText = document.createElement("p");
   variationText.textContent = "Taxas de variação:";
 
-  const bid = document.createElement("span");
-  bid.textContent = "BID: ";
-  const varBidResult = document.createElement("span");
-  varBidResult.setAttribute("id", "var-bid-result");
-  bid.appendChild(varBidResult);
-
-  const divider = document.createElement("span");
-  divider.setAttribute("class", "divider");
-  divider.textContent = "|";
-
-  const ask = document.createElement("span");
-  ask.textContent = "ASK: ";
-  const varAskResult = document.createElement("span");
-  varAskResult.setAttribute("id", "var-ask-result");
-  ask.appendChild(varAskResult);
+  const variationResult = document.createElement("p");
+  variationResult.innerHTML =
+    'BID: <span id="var-bid-result"></span> &nbsp;|&nbsp; ASK: <span id="var-ask-result"></span>';
 
   const exchangeResultText = document.createElement("label");
   exchangeResultText.setAttribute("for", "exchange-result");
@@ -165,17 +153,15 @@ function createGridLeftColumnElements() {
   exchangeResult.setAttribute("id", "exchange-result");
   exchangeResult.setAttribute("readonly", "true");
 
-  return [variationText, bid, divider, ask, exchangeResultText, exchangeResult];
+  return [variationText, variationResult, exchangeResultText, exchangeResult];
 }
 
 function appendGridLeftColumnElements(parent) {
-  const [variationText, bid, divider, ask, exchangeResultText, exchangeResult] =
+  const [variationText, variationResult, exchangeResultText, exchangeResult] =
     createGridLeftColumnElements();
 
   parent.appendChild(variationText);
-  parent.appendChild(bid);
-  parent.appendChild(divider);
-  parent.appendChild(ask);
+  parent.appendChild(variationResult);
   parent.appendChild(exchangeResultText);
   parent.appendChild(exchangeResult);
 

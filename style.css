@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -15,17 +16,14 @@
 }
 
 html {
-  font-size: 62.5%; /* now, each rem unity is equal to 10px. */
+  font-size: 62.5%; /* now, each rem is equivalent to 10px. */
 }
 
 body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
-
   background-color: #141518;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.6rem;
 }
 
 body main {
@@ -35,34 +33,35 @@ body main {
   justify-content: center;
   align-items: center;
 
-  padding: 12px 0 24px;
+  padding: 1.4rem 0 2.8rem;
 }
 
 main h1 {
   font-family: "Pattaya", sans-serif;
-  font-size: 4.8rem;
+  font-size: 5.6rem;
   color: var(--blue-green);
   margin-bottom: 10px;
 }
 
 main div.exchange-card {
-  padding: 16px 20px;
-  min-width: 500px;
-  background-color: rgba(9, 9, 9, 0.75);
+  padding: 2.2rem 2.6rem;
+  min-width: 60rem;
+  background-color: rgba(10, 11, 12, 0.75);
 
-  border: 1.5px solid var(--lemon-green);
-  border-radius: 7.5px;
-  box-shadow: 10px 10px 15px rgba(2.5, 2.5, 2.5, 0.95);
+  border: 0.2rem solid var(--lemon-green);
+  border-radius: 8px;
+  box-shadow: 2rem 2rem 2.4rem rgba(4, 4, 4, 0.9);
 }
 
 div.exchange-card section h2 {
   text-align: center;
+  font-size: 3.2rem;
   color: var(--blue-green);
-  margin-bottom: 25px;
+  margin-bottom: 2.4rem;
 }
 
 section.result h2 {
-  margin-top: 30px;
+  margin: 2.8rem 0;
 }
 
 section p,
@@ -70,9 +69,9 @@ section label {
   display: block;
   width: fit-content;
 
-  font-size: 1.6rem;
+  font-size: 2.4rem;
   color: #f1f0e3;
-  margin-bottom: 8px;
+  margin-bottom: 1rem;
 }
 
 section label {
@@ -81,19 +80,19 @@ section label {
 
 section select,
 section input {
+  width: 27.75rem;
+  margin-bottom: 2.6rem;
   background-color: transparent;
-  width: 180px;
-  height: 22.5px;
-  margin-bottom: 22.5px;
+  font-size: 2.1rem;
 
   outline: none;
-  border: 2px solid var(--lemon-green);
+  border: 0.25rem solid var(--lemon-green);
   transition-duration: 0.5s;
 }
 
 section input:focus,
 section select:focus {
-  border: 2px solid var(--red);
+  border-color: var(--red);
 }
 
 section.data-input input::-webkit-inner-spin-button {
@@ -101,8 +100,7 @@ section.data-input input::-webkit-inner-spin-button {
 }
 
 section input {
-  padding: 0 12px;
-  font-size: 1.4rem;
+  padding: 0.35rem 1.8rem;
   color: #f1f0e3;
   border-radius: 30px 0 30px 0;
 }
@@ -116,8 +114,7 @@ section.result input[readonly] {
 }
 
 section.data-input select {
-  padding-left: 5px;
-  font-size: 1.4rem;
+  padding: 0.35rem 0.9rem;
   color: var(--blue-green);
   cursor: pointer;
 }
@@ -141,19 +138,21 @@ section.data-input select::-webkit-scrollbar-track {
 
 section.data-input select option {
   background-color: var(--opaque-black);
+  font-size: 2.1rem;
   color: #f1f0e3;
 }
 
 div.exchange-card div.btn-container {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 3.2rem;
 }
 
 div.btn-container button {
-  width: 145px;
-  height: 34px;
+  width: 17.5rem;
+  height: 4.4rem;
+
   font-family: "Pattaya", sans-serif;
-  font-size: 1.75rem;
+  font-size: 2.4rem;
   background-color: var(--blue-green);
 
   border: none;
@@ -174,36 +173,37 @@ div.exchange-card section.result div.result-container {
 
 div.result-container div.left-column,
 div.result-container div.right-column {
-  padding: 6px 0 12px;
+  padding: 0.8rem 0 1.6rem;
 }
 
 div.result-container div.left-column {
-  padding-right: 20px;
+  padding-right: 2.8rem;
   color: var(--blue-green);
-  border-right: 0.5px solid var(--red);
+  border-right: 0.2rem solid var(--red);
 }
 
-div.left-column span {
+div.left-column p:first-child {
+  margin-bottom: 1.6rem;
+}
+
+div.left-column p:last-of-type {
   color: var(--hover-green);
-  font-size: 1.55rem;
+  font-size: 2.15rem;
+  letter-spacing: 1.15px;
+  white-space: nowrap;
 }
 
-div.left-column span span {
+div.left-column p:last-of-type span {
   color: var(--red);
 }
 
-div.left-column span.divider {
-  color: var(--blue-green);
-  padding: 0 7.5px;
-}
-
 div.left-column label {
-  margin-top: 25.25px;
+  margin-top: 3.1rem;
 }
 
 div.result-container div.right-column {
-  padding-left: 20px;
-  border-left: 0.5px solid var(--red);
+  padding-left: 2.8rem;
+  border-left: 0.2rem solid var(--red);
 }
 
 div.right-column input {
@@ -216,13 +216,8 @@ div.right-column span {
 
 @media (max-width: 540px) {
   main div.exchange-card {
-    min-width: 250px;
+    min-width: initial;
     width: 92.5%;
-  }
-
-  div.exchange-card section.data-input select,
-  div.exchange-card section.data-input input {
-    width: 180px;
   }
 
   div.exchange-card section.result div.result-container {
