@@ -195,6 +195,7 @@ div.left-column p:last-of-type {
 
 div.left-column p:last-of-type span {
   color: var(--red);
+  letter-spacing: initial;
 }
 
 div.left-column label {
