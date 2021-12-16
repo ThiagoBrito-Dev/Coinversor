@@ -10,9 +10,9 @@
   --lemon-green: #5cac00;
   --hover-green: #06f756;
   --flaxen-white: #f1f0e3;
-  --red: #920707;
-  --hover-red: #810404;
-  --opaque-black: rgba(9, 9, 9, 0.975);
+  --red: #ff1919;
+  --hover-red: #8a0f0f;
+  --opaque-black: rgba(10, 11, 12, 0.95);
 }
 
 html {
@@ -24,6 +24,24 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-color: #141518;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 25px;
+  background-color: var(--blue-green);
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--hover-green);
 }
 
 body main {
@@ -65,8 +83,15 @@ div.exchange-card section.result h2 {
   margin-bottom: 3.4rem;
 }
 
-section p,
-section label {
+section div.data-wrapper {
+  margin-bottom: 2.8rem;
+}
+
+section div.data-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+section :is(p, label) {
   display: block;
   width: fit-content;
 
@@ -79,20 +104,18 @@ section label {
   cursor: pointer;
 }
 
-section select,
-section input {
-  width: 27.75rem;
-  margin-bottom: 2.8rem;
+section :is(select, input) {
+  width: 28rem;
   background-color: transparent;
   font-size: 2.1rem;
+  letter-spacing: 0.05rem;
 
   outline: none;
   border: 0.25rem solid var(--lemon-green);
   transition-duration: 0.5s;
 }
 
-section input:focus,
-section select:focus {
+section :is(input:focus, select:focus) {
   border-color: var(--red);
 }
 
@@ -104,10 +127,6 @@ section input {
   padding: 0.35rem 1.8rem;
   color: #f1f0e3;
   border-radius: 30px 0 30px 0;
-}
-
-section input:last-child {
-  margin-bottom: 0;
 }
 
 section.result input[readonly] {
@@ -138,8 +157,8 @@ section.data-input select::-webkit-scrollbar-track {
 }
 
 section.data-input select option {
-  background-color: var(--opaque-black);
   font-size: 2.1rem;
+  background-color: var(--opaque-black);
   color: #f1f0e3;
 }
 
@@ -153,17 +172,17 @@ div.btn-container button {
   height: 4.8rem;
 
   font-family: "Pattaya", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.55rem;
   background-color: var(--blue-green);
 
+  outline-offset: 2px;
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  transition-duration: 0.5s;
+  transition: background-color 0.5s;
 }
 
-div.btn-container button:hover,
-div.btn-container button:focus {
+div.btn-container :is(button:hover, button:focus) {
   background-color: var(--hover-green);
 }
 
@@ -172,15 +191,18 @@ div.exchange-card section.result div.result-container {
   grid-template-columns: 1fr 1fr;
 }
 
-div.result-container div.left-column,
-div.result-container div.right-column {
+div.result-container :is(div.left-column, div.right-column) {
   padding: 0.8rem 0 1.6rem;
 }
 
 div.result-container div.left-column {
   padding-right: 2.8rem;
   color: var(--blue-green);
-  border-right: 0.2rem solid var(--red);
+  border-right: 1px solid var(--red);
+}
+
+div.left-column div.data-wrapper:first-child {
+  margin-bottom: 3.1rem;
 }
 
 div.left-column p:first-child {
@@ -190,22 +212,18 @@ div.left-column p:first-child {
 div.left-column p:last-of-type {
   color: var(--hover-green);
   font-size: 2.25rem;
-  letter-spacing: 1.15px;
+  letter-spacing: 0.115rem;
   white-space: nowrap;
 }
 
 div.left-column p:last-of-type span {
   color: var(--red);
-  letter-spacing: initial;
-}
-
-div.left-column label {
-  margin-top: 3.1rem;
+  letter-spacing: 0.05rem;
 }
 
 div.result-container div.right-column {
   padding-left: 2.8rem;
-  border-left: 0.2rem solid var(--red);
+  border-left: 1px solid var(--red);
 }
 
 div.right-column input {
@@ -248,7 +266,7 @@ div.right-column span {
     padding: 0;
     padding-bottom: 3.4rem;
     border-right: none;
-    border-bottom: 0.5px solid var(--red);
+    border-bottom: 1px solid var(--red);
   }
 
   div.result-container div.left-column label {
@@ -259,7 +277,7 @@ div.right-column span {
     padding: 0;
     padding-top: 3.2rem;
     border-left: none;
-    border-top: 0.5px solid var(--red);
+    border-top: 1px solid var(--red);
   }
 
   div.result-container div.right-column input {

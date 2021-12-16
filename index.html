@@ -31,51 +31,56 @@
           <h2>Converta valores para real</h2>
 
           <div>
-            <p>Escolha uma moeda para o câmbio:</p>
-            <select onchange="formatInputValue()">
-              <option value="THB">Baht Tailandês</option>
-              <option value="BOB">Boliviano</option>
-              <option value="DKK">Coroa Dinamarquesa</option>
-              <option value="NOK">Coroa Norueguesa</option>
-              <option value="SEK">Coroa Sueca</option>
-              <option value="AED">Dirham dos Emirados</option>
-              <option value="USD" selected>Dólar Americano</option>
-              <option value="AUD">Dólar Australiano</option>
-              <option value="CAD">Dólar Canadense</option>
-              <option value="NZD">Dólar Neozelandês</option>
-              <option value="TWD">Dólar Taiuanês</option>
-              <option value="SGD">Dólar de Cingapura</option>
-              <option value="HKD">Dólar de Hong Kong</option>
-              <option value="EUR">Euro</option>
-              <option value="CHF">Franco Suíço</option>
-              <option value="PYG">Guarani Paraguaio</option>
-              <option value="JPY">Iene Japonês</option>
-              <option value="GBP">Libra Esterlina</option>
-              <option value="TRY">Nova Lira Turca</option>
-              <option value="ILS">Novo Shekel Israelense</option>
-              <option value="ARS">Peso Argentino</option>
-              <option value="CLP">Peso Chileno</option>
-              <option value="COP">Peso Colombiano</option>
-              <option value="MXN">Peso Mexicano</option>
-              <option value="UYU">Peso Uruguaio</option>
-              <option value="ZAR">Rand Sul-Africano</option>
-              <option value="SAR">Riyal Saudita</option>
-              <option value="RUB">Rublo Russo</option>
-              <option value="INR">Rúpia Indiana</option>
-              <option value="PEN">Sol do Peru</option>
-              <option value="CNY">Yuan Chinês</option>
-              <option value="PLN">Zlóti Polonês</option>
-            </select>
-
-            <label for="exchange-input"
-              >Informe o valor a ser convertido:</label
-            >
-            <input
-              type="text"
-              id="exchange-input"
-              oninput="formatInputValue()"
-              value="US$ 1"
-            />
+            <div class="data-wrapper">
+              <label for="currency-select"
+                >Escolha uma moeda para o câmbio:</label
+              >
+              <select id="currency-select" onchange="formatInputValue()">
+                <option value="THB">Baht Tailandês</option>
+                <option value="BOB">Boliviano</option>
+                <option value="DKK">Coroa Dinamarquesa</option>
+                <option value="NOK">Coroa Norueguesa</option>
+                <option value="SEK">Coroa Sueca</option>
+                <option value="AED">Dirham dos Emirados</option>
+                <option value="USD" selected>Dólar Americano</option>
+                <option value="AUD">Dólar Australiano</option>
+                <option value="CAD">Dólar Canadense</option>
+                <option value="NZD">Dólar Neozelandês</option>
+                <option value="TWD">Dólar Taiuanês</option>
+                <option value="SGD">Dólar de Cingapura</option>
+                <option value="HKD">Dólar de Hong Kong</option>
+                <option value="EUR">Euro</option>
+                <option value="CHF">Franco Suíço</option>
+                <option value="PYG">Guarani Paraguaio</option>
+                <option value="JPY">Iene Japonês</option>
+                <option value="GBP">Libra Esterlina</option>
+                <option value="TRY">Nova Lira Turca</option>
+                <option value="ILS">Novo Shekel Israelense</option>
+                <option value="ARS">Peso Argentino</option>
+                <option value="CLP">Peso Chileno</option>
+                <option value="COP">Peso Colombiano</option>
+                <option value="MXN">Peso Mexicano</option>
+                <option value="UYU">Peso Uruguaio</option>
+                <option value="ZAR">Rand Sul-Africano</option>
+                <option value="SAR">Riyal Saudita</option>
+                <option value="RUB">Rublo Russo</option>
+                <option value="INR">Rúpia Indiana</option>
+                <option value="PEN">Sol do Peru</option>
+                <option value="CNY">Yuan Chinês</option>
+                <option value="PLN">Zlóti Polonês</option>
+              </select>
+            </div>
+            <div class="data-wrapper">
+              <label for="exchange-input"
+                >Informe o valor a ser convertido:</label
+              >
+              <input
+                type="text"
+                id="exchange-input"
+                oninput="formatInputValue()"
+                value="US$ 1"
+              />
+            </div>
           </div>
         </section>
 

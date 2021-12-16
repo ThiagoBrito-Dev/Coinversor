@@ -85,6 +85,9 @@ function convertToCurrencyFormat(value, currency, minimumFractionDigits) {
 
 function createResultSection() {
   let resultSection = document.createElement("section");
+  resultSection.setAttribute("role", "status");
+  // the status role is responsible for alerting screen reader users about contents that
+  // has been dynamically placed on the page, as is the case of this section.
   resultSection.setAttribute("class", "result");
   resultSection = appendResultSectionElements(resultSection);
 
@@ -137,12 +140,18 @@ function createGridLeftColumn() {
 }
 
 function createGridLeftColumnElements() {
+  const stDataWrapper = document.createElement("div");
+  stDataWrapper.setAttribute("class", "data-wrapper");
+
   const variationText = document.createElement("p");
   variationText.textContent = "Taxas de variação:";
 
   const variationResult = document.createElement("p");
   variationResult.innerHTML =
     'BID: <span id="var-bid-result"></span> &nbsp;|&nbsp; ASK: <span id="var-ask-result"></span>';
+
+  const ndDataWrapper = document.createElement("div");
+  ndDataWrapper.setAttribute("class", "data-wrapper");
 
   const exchangeResultText = document.createElement("label");
   exchangeResultText.setAttribute("for", "exchange-result");
@@ -153,17 +162,32 @@ function createGridLeftColumnElements() {
   exchangeResult.setAttribute("id", "exchange-result");
   exchangeResult.setAttribute("readonly", "true");
 
-  return [variationText, variationResult, exchangeResultText, exchangeResult];
+  return [
+    stDataWrapper,
+    variationText,
+    variationResult,
+    ndDataWrapper,
+    exchangeResultText,
+    exchangeResult,
+  ];
 }
 
 function appendGridLeftColumnElements(parent) {
-  const [variationText, variationResult, exchangeResultText, exchangeResult] =
-    createGridLeftColumnElements();
+  const [
+    stDataWrapper,
+    variationText,
+    variationResult,
+    ndDataWrapper,
+    exchangeResultText,
+    exchangeResult,
+  ] = createGridLeftColumnElements();
 
-  parent.appendChild(variationText);
-  parent.appendChild(variationResult);
-  parent.appendChild(exchangeResultText);
-  parent.appendChild(exchangeResult);
+  stDataWrapper.appendChild(variationText);
+  stDataWrapper.appendChild(variationResult);
+  parent.appendChild(stDataWrapper);
+  ndDataWrapper.appendChild(exchangeResultText);
+  ndDataWrapper.appendChild(exchangeResult);
+  parent.appendChild(ndDataWrapper);
 
   return parent;
 }
@@ -177,6 +201,9 @@ function createGridRightColumn() {
 }
 
 function createGridRightColumnElements() {
+  const stDataWrapper = document.createElement("div");
+  stDataWrapper.setAttribute("class", "data-wrapper");
+
   const highestQuotationText = document.createElement("label");
   highestQuotationText.setAttribute("for", "highest-quot-result");
   highestQuotationText.innerHTML = "Maior cotação <span>(dia)</span>:";
@@ -185,6 +212,9 @@ function createGridRightColumnElements() {
   highestQuotationResult.setAttribute("type", "text");
   highestQuotationResult.setAttribute("id", "highest-quot-result");
   highestQuotationResult.setAttribute("readonly", "true");
+
+  const ndDataWrapper = document.createElement("div");
+  ndDataWrapper.setAttribute("class", "data-wrapper");
 
   const lowestQuotationText = document.createElement("label");
   lowestQuotationText.setAttribute("for", "lowest-quot-result");
@@ -196,8 +226,10 @@ function createGridRightColumnElements() {
   lowestQuotationResult.setAttribute("readonly", "true");
 
   return [
+    stDataWrapper,
     highestQuotationText,
     highestQuotationResult,
+    ndDataWrapper,
     lowestQuotationText,
     lowestQuotationResult,
   ];
@@ -205,16 +237,20 @@ function createGridRightColumnElements() {
 
 function appendGridRightColumnElements(parent) {
   const [
+    stDataWrapper,
     highestQuotationText,
     highestQuotationResult,
+    ndDataWrapper,
     lowestQuotationText,
     lowestQuotationResult,
   ] = createGridRightColumnElements();
 
-  parent.appendChild(highestQuotationText);
-  parent.appendChild(highestQuotationResult);
-  parent.appendChild(lowestQuotationText);
-  parent.appendChild(lowestQuotationResult);
+  stDataWrapper.appendChild(highestQuotationText);
+  stDataWrapper.appendChild(highestQuotationResult);
+  parent.appendChild(stDataWrapper);
+  ndDataWrapper.appendChild(lowestQuotationText);
+  ndDataWrapper.appendChild(lowestQuotationResult);
+  parent.appendChild(ndDataWrapper);
 
   return parent;
 }
