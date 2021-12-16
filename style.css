@@ -38,13 +38,13 @@ body main {
 
 main h1 {
   font-family: "Pattaya", sans-serif;
-  font-size: 6rem;
+  font-size: 6.4rem;
   color: var(--blue-green);
   margin-bottom: 1rem;
 }
 
 main div.exchange-card {
-  padding: 2.2rem 2.6rem;
+  padding: 2.2rem 2.6rem 2.4rem;
   min-width: 64rem;
   background-color: rgba(10, 11, 12, 0.75);
 
@@ -55,14 +55,14 @@ main div.exchange-card {
 
 div.exchange-card section h2 {
   text-align: center;
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   color: var(--blue-green);
-  margin-bottom: 2.4rem;
+  margin-bottom: 2.8rem;
 }
 
 div.exchange-card section.result h2 {
-  margin-top: 2.8rem;
-  margin-bottom: 2.8rem;
+  margin-top: 3.2rem;
+  margin-bottom: 3.2rem;
 }
 
 section p,
@@ -82,7 +82,7 @@ section label {
 section select,
 section input {
   width: 27.75rem;
-  margin-bottom: 2.6rem;
+  margin-bottom: 2.8rem;
   background-color: transparent;
   font-size: 2.1rem;
 
@@ -149,11 +149,11 @@ div.exchange-card div.btn-container {
 }
 
 div.btn-container button {
-  width: 17.5rem;
-  height: 4.4rem;
+  width: 22rem;
+  height: 4.8rem;
 
   font-family: "Pattaya", sans-serif;
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   background-color: var(--blue-green);
 
   border: none;
@@ -240,7 +240,7 @@ div.right-column span {
 
   div.result-container div.left-column {
     padding: 0;
-    padding-bottom: 24px;
+    padding-bottom: 3.4rem;
     border-right: none;
     border-bottom: 0.5px solid var(--red);
   }
@@ -251,7 +251,7 @@ div.right-column span {
 
   div.result-container div.right-column {
     padding: 0;
-    padding-top: 24px;
+    padding-top: 3.2rem;
     border-left: none;
     border-top: 0.5px solid var(--red);
   }
