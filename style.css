@@ -62,7 +62,6 @@ div.exchange-card section h2 {
 
 div.exchange-card section.result h2 {
   margin-top: 3.2rem;
-  margin-bottom: 3.2rem;
 }
 
 section p,
@@ -145,7 +144,7 @@ section.data-input select option {
 
 div.exchange-card div.btn-container {
   text-align: center;
-  margin-top: 3.4rem;
+  margin-top: 3.6rem;
 }
 
 div.btn-container button {
