@@ -62,6 +62,7 @@ div.exchange-card section h2 {
 
 div.exchange-card section.result h2 {
   margin-top: 3.4rem;
+  margin-bottom: 3.4rem;
 }
 
 section p,
@@ -231,6 +232,11 @@ div.right-column span {
   main div.exchange-card {
     min-width: initial;
     width: 100%;
+  }
+
+  div.exchange-card section.result h2 {
+    margin-top: 3.4rem;
+    margin-bottom: 2.8rem;
   }
 
   div.exchange-card section.result div.result-container {
