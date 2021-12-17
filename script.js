@@ -1,75 +1,77 @@
 function formatInputValue() {
-  const currency = document.querySelector("select").value;
-  const exchangeInput = document.querySelector("input#exchange-input");
+  const selectedCurrency = document.getElementById("currency-select").value;
+  const exchangeInput = document.getElementById("exchange-input");
+  let exchangeValue = exchangeInput.value;
 
-  if (exchangeInput.value.indexOf(",") === -1) {
-    let inputValue = Number(exchangeInput.value.replace(/\D/g, ""));
+  if (!exchangeValue.includes(",")) {
+    exchangeValue = Number(exchangeValue.replace(/\D/g, ""));
 
-    if (!inputValue) {
-      inputValue = 1;
+    if (!exchangeValue) {
+      exchangeValue = 1;
     }
 
-    inputValue = convertToCurrencyFormat(inputValue, currency, 0);
-    exchangeInput.value = inputValue;
-  } else {
-    const splittedInputValue = exchangeInput.value.split(",");
-    const lastPosition = splittedInputValue.length - 1;
-
-    if (
-      splittedInputValue.length > 2 &&
-      splittedInputValue[lastPosition] === ""
-    ) {
-      splittedInputValue.pop();
-    }
-
-    splittedInputValue[0] = Number(splittedInputValue[0].replace(/\D/g, ""));
-    splittedInputValue[0] = convertToCurrencyFormat(
-      splittedInputValue[0],
-      currency,
+    const formattedExchangeValue = convertToCurrencyFormat(
+      exchangeValue,
+      selectedCurrency,
       0
     );
-    splittedInputValue[1] = splittedInputValue[1].replace(/\D/g, "");
-    exchangeInput.value = splittedInputValue.join(",");
+
+    exchangeInput.value = formattedExchangeValue;
+  } else {
+    let splittedExchangeValue = exchangeValue
+      .replace(/[^0-9,]/g, "")
+      .split(",");
+    let exchangeIntValue = Number(splittedExchangeValue.shift());
+
+    exchangeIntValue = convertToCurrencyFormat(
+      exchangeIntValue,
+      selectedCurrency,
+      0
+    );
+
+    const exchangeDeciValue = splittedExchangeValue.join("");
+    exchangeInput.value = exchangeIntValue + "," + exchangeDeciValue;
   }
 }
 
 async function exchange() {
-  const currency = document.querySelector("select").value;
-  const exchangeInput = document.querySelector("input#exchange-input");
-  const exchangeType = `${currency}BRL`;
-  let valueToExchange = Number(
-    exchangeInput.value.replace(/[^0-9\,]/g, "").replace(",", ".")
+  const selectedCurrency = document.getElementById("currency-select").value;
+  const exchangeInput = document.getElementById("exchange-input");
+  let exchangeValue = Number(
+    exchangeInput.value.replace(/[^0-9,]/g, "").replace(",", ".")
   );
 
-  if (!valueToExchange) {
-    valueToExchange = exchangeInput.value = 1;
+  if (!exchangeValue) {
+    exchangeValue = exchangeInput.value = 1;
   }
 
   try {
-    const currencyInfo = await fetch(
-      `https://economia.awesomeapi.com.br/json/last/${currency}-BRL`
+    const selectedCurrencyData = await fetch(
+      `https://economia.awesomeapi.com.br/json/last/${selectedCurrency}-BRL`
     ).then((response) => {
       if (response.status === 200 && response.ok) {
         return response.json();
       } else {
         throw new Error(
-          "Desculpe, mas devido a algum erro, não foi possível realizar o câmbio desta moeda. Por favor, tente novamente."
+          "Desculpe, mas não foi possível realizar o câmbio desta moeda. Por favor, tente novamente!"
         );
       }
     });
 
-    const { varBid, pctChange, ask, high, low } = currencyInfo[exchangeType];
-    const currencyData = {
-      varBidValue: varBid.replace(".", ","),
-      varAskValue: pctChange.replace(".", ","),
-      exchangeValue: convertToCurrencyFormat(valueToExchange * ask, "BRL", 4),
-      highestValue: convertToCurrencyFormat(Number(high), "BRL", 4),
-      lowestValue: convertToCurrencyFormat(Number(low), "BRL", 4),
+    const exchangeType = `${selectedCurrency}BRL`;
+    const { varBid, pctChange, ask, high, low } =
+      selectedCurrencyData[exchangeType];
+
+    const resultData = {
+      varBid: varBid.replace(".", ","),
+      varAsk: pctChange.replace(".", ","),
+      exchangeResult: convertToCurrencyFormat(exchangeValue * ask, "BRL", 4),
+      highestQuot: convertToCurrencyFormat(Number(high), "BRL", 4),
+      lowestQuot: convertToCurrencyFormat(Number(low), "BRL", 4),
     };
 
-    displayElements(currencyData);
+    displayElements(resultData);
     exchangeInput.value = "";
-    exchangeInput.focus();
   } catch (error) {
     console.log(error.message);
   }
@@ -83,75 +85,106 @@ function convertToCurrencyFormat(value, currency, minimumFractionDigits) {
   });
 }
 
+function displayElements(data) {
+  const exchangeCard = document.querySelector("div.exchange-card");
+  const existentResultSection = document.querySelector("section.result");
+  const resultSection = createResultSection();
+  const sectionTitle = resultSection.querySelector("h2");
+  const actionsContainer = document.querySelector("div.card-actions");
+
+  insertExchangeResultData(resultSection, data);
+
+  if (existentResultSection) {
+    exchangeCard.removeChild(existentResultSection);
+  }
+
+  exchangeCard.insertBefore(resultSection, actionsContainer);
+  sectionTitle.focus(); // for accessibility purposes
+}
+
 function createResultSection() {
   let resultSection = document.createElement("section");
-  resultSection.setAttribute("role", "status");
-  // the status role is responsible for alerting screen reader users about contents that
-  // has been dynamically placed on the page, as is the case of this section.
   resultSection.setAttribute("class", "result");
   resultSection = appendResultSectionElements(resultSection);
 
   return resultSection;
 }
 
-function appendResultSectionElements(parent) {
+function appendResultSectionElements(resultSection) {
   const sectionTitle = createSectionTitle();
-  const resultGrid = createResultGrid();
+  const sectionContent = createSectionContent();
 
-  parent.appendChild(sectionTitle);
-  parent.appendChild(resultGrid);
+  resultSection.appendChild(sectionTitle);
+  resultSection.appendChild(sectionContent);
 
-  return parent;
+  return resultSection;
 }
 
 function createSectionTitle() {
   const sectionTitle = document.createElement("h2");
+  sectionTitle.setAttribute("tabindex", "-1");
   sectionTitle.textContent = "Detalhes da conversão";
 
   return sectionTitle;
 }
 
-function createResultGrid() {
-  let resultGrid = document.createElement("div");
-  resultGrid.setAttribute("class", "result-container");
+function createSectionContent() {
+  let sectionContent = document.createElement("div");
+  sectionContent.setAttribute("class", "section-content");
 
-  resultGrid = appendResultGridColumns(
-    resultGrid,
-    createGridLeftColumn(),
-    createGridRightColumn()
+  sectionContent = appendContentElements(
+    sectionContent,
+    createContentLeftColumn(),
+    createContentRightColumn()
   );
 
-  return resultGrid;
+  return sectionContent;
 }
 
-function appendResultGridColumns(parent, leftColumn, rightColumn) {
-  parent.appendChild(leftColumn);
-  parent.appendChild(rightColumn);
-
-  return parent;
-}
-
-function createGridLeftColumn() {
+function createContentLeftColumn() {
   let leftColumn = document.createElement("div");
   leftColumn.setAttribute("class", "left-column");
 
-  appendGridLeftColumnElements(leftColumn);
+  appendLeftColumnElements(leftColumn);
   return leftColumn;
 }
 
-function createGridLeftColumnElements() {
-  const stDataWrapper = document.createElement("div");
-  stDataWrapper.setAttribute("class", "data-wrapper");
+function appendLeftColumnElements(leftColumn) {
+  const [
+    variationWrapper,
+    variationText,
+    variationResult,
+    expressionResultWrapper,
+    exchangeResultText,
+    exchangeResult,
+  ] = createLeftColumnElements();
+
+  variationWrapper.appendChild(variationText);
+  variationWrapper.appendChild(variationResult);
+  leftColumn.appendChild(variationWrapper);
+
+  expressionResultWrapper.appendChild(exchangeResultText);
+  expressionResultWrapper.appendChild(exchangeResult);
+  leftColumn.appendChild(expressionResultWrapper);
+
+  return leftColumn;
+}
+
+function createLeftColumnElements() {
+  const variationWrapper = document.createElement("div");
+  variationWrapper.setAttribute("class", "data-wrapper");
 
   const variationText = document.createElement("p");
   variationText.textContent = "Taxas de variação:";
 
   const variationResult = document.createElement("p");
-  variationResult.innerHTML =
-    'BID: <span id="var-bid-result"></span> &nbsp;|&nbsp; ASK: <span id="var-ask-result"></span>';
+  variationResult.innerHTML = `BID: 
+    <span id="bid-variation"></span> 
+    &nbsp;|&nbsp; ASK: 
+    <span id="ask-variation"></span>`;
 
-  const ndDataWrapper = document.createElement("div");
-  ndDataWrapper.setAttribute("class", "data-wrapper");
+  const exchangeResultWrapper = document.createElement("div");
+  exchangeResultWrapper.setAttribute("class", "data-wrapper");
 
   const exchangeResultText = document.createElement("label");
   exchangeResultText.setAttribute("for", "exchange-result");
@@ -163,127 +196,98 @@ function createGridLeftColumnElements() {
   exchangeResult.setAttribute("readonly", "true");
 
   return [
-    stDataWrapper,
+    variationWrapper,
     variationText,
     variationResult,
-    ndDataWrapper,
+    exchangeResultWrapper,
     exchangeResultText,
     exchangeResult,
   ];
 }
 
-function appendGridLeftColumnElements(parent) {
-  const [
-    stDataWrapper,
-    variationText,
-    variationResult,
-    ndDataWrapper,
-    exchangeResultText,
-    exchangeResult,
-  ] = createGridLeftColumnElements();
-
-  stDataWrapper.appendChild(variationText);
-  stDataWrapper.appendChild(variationResult);
-  parent.appendChild(stDataWrapper);
-  ndDataWrapper.appendChild(exchangeResultText);
-  ndDataWrapper.appendChild(exchangeResult);
-  parent.appendChild(ndDataWrapper);
-
-  return parent;
-}
-
-function createGridRightColumn() {
+function createContentRightColumn() {
   let rightColumn = document.createElement("div");
   rightColumn.setAttribute("class", "right-column");
-  rightColumn = appendGridRightColumnElements(rightColumn);
+  rightColumn = appendRightColumnElements(rightColumn);
 
   return rightColumn;
 }
 
-function createGridRightColumnElements() {
-  const stDataWrapper = document.createElement("div");
-  stDataWrapper.setAttribute("class", "data-wrapper");
-
-  const highestQuotationText = document.createElement("label");
-  highestQuotationText.setAttribute("for", "highest-quot-result");
-  highestQuotationText.innerHTML = "Maior cotação <span>(dia)</span>:";
-
-  const highestQuotationResult = document.createElement("input");
-  highestQuotationResult.setAttribute("type", "text");
-  highestQuotationResult.setAttribute("id", "highest-quot-result");
-  highestQuotationResult.setAttribute("readonly", "true");
-
-  const ndDataWrapper = document.createElement("div");
-  ndDataWrapper.setAttribute("class", "data-wrapper");
-
-  const lowestQuotationText = document.createElement("label");
-  lowestQuotationText.setAttribute("for", "lowest-quot-result");
-  lowestQuotationText.innerHTML = "Menor cotação <span>(dia)</span>:";
-
-  const lowestQuotationResult = document.createElement("input");
-  lowestQuotationResult.setAttribute("type", "text");
-  lowestQuotationResult.setAttribute("id", "lowest-quot-result");
-  lowestQuotationResult.setAttribute("readonly", "true");
-
-  return [
-    stDataWrapper,
+function appendRightColumnElements(rightColumn) {
+  const [
+    highestQuotWrapper,
     highestQuotationText,
     highestQuotationResult,
-    ndDataWrapper,
+    lowestQuotWrapper,
     lowestQuotationText,
     lowestQuotationResult,
+  ] = createRightColumnElements();
+
+  highestQuotWrapper.appendChild(highestQuotationText);
+  highestQuotWrapper.appendChild(highestQuotationResult);
+  rightColumn.appendChild(highestQuotWrapper);
+
+  lowestQuotWrapper.appendChild(lowestQuotationText);
+  lowestQuotWrapper.appendChild(lowestQuotationResult);
+  rightColumn.appendChild(lowestQuotWrapper);
+
+  return rightColumn;
+}
+
+function createRightColumnElements() {
+  const highestQuotWrapper = document.createElement("div");
+  highestQuotWrapper.setAttribute("class", "data-wrapper");
+
+  const highestQuotText = document.createElement("label");
+  highestQuotText.setAttribute("for", "highest-quotation");
+  highestQuotText.innerHTML = "Maior cotação <span>(dia)</span>:";
+
+  const highestQuotResult = document.createElement("input");
+  highestQuotResult.setAttribute("type", "text");
+  highestQuotResult.setAttribute("id", "highest-quotation");
+  highestQuotResult.setAttribute("readonly", "true");
+
+  const lowestQuotWrapper = document.createElement("div");
+  lowestQuotWrapper.setAttribute("class", "data-wrapper");
+
+  const lowestQuotText = document.createElement("label");
+  lowestQuotText.setAttribute("for", "lowest-quotation");
+  lowestQuotText.innerHTML = "Menor cotação <span>(dia)</span>:";
+
+  const lowestQuotResult = document.createElement("input");
+  lowestQuotResult.setAttribute("type", "text");
+  lowestQuotResult.setAttribute("id", "lowest-quotation");
+  lowestQuotResult.setAttribute("readonly", "true");
+
+  return [
+    highestQuotWrapper,
+    highestQuotText,
+    highestQuotResult,
+    lowestQuotWrapper,
+    lowestQuotText,
+    lowestQuotResult,
   ];
 }
 
-function appendGridRightColumnElements(parent) {
-  const [
-    stDataWrapper,
-    highestQuotationText,
-    highestQuotationResult,
-    ndDataWrapper,
-    lowestQuotationText,
-    lowestQuotationResult,
-  ] = createGridRightColumnElements();
+function appendContentElements(sectionContent, leftColumn, rightColumn) {
+  sectionContent.appendChild(leftColumn);
+  sectionContent.appendChild(rightColumn);
 
-  stDataWrapper.appendChild(highestQuotationText);
-  stDataWrapper.appendChild(highestQuotationResult);
-  parent.appendChild(stDataWrapper);
-  ndDataWrapper.appendChild(lowestQuotationText);
-  ndDataWrapper.appendChild(lowestQuotationResult);
-  parent.appendChild(ndDataWrapper);
-
-  return parent;
+  return sectionContent;
 }
 
-function displayElements(data) {
-  const exchangeContainer = document.querySelector("div.exchange-card");
-  const result = document.querySelector("section.result");
-  const buttonContainer = document.querySelector("div.btn-container");
-  const resultSection = createResultSection();
-
-  insertResultData(resultSection, data);
-
-  if (result) {
-    exchangeContainer.removeChild(result);
-  }
-
-  exchangeContainer.insertBefore(resultSection, buttonContainer);
-}
-
-function insertResultData(resultSection, data) {
-  const varBidResult = resultSection.querySelector("span#var-bid-result");
-  const varAskResult = resultSection.querySelector("span#var-ask-result");
-  const exchangeResult = resultSection.querySelector("input#exchange-result");
-  const highestQuotationResult = resultSection.querySelector(
-    "input#highest-quot-result"
+function insertExchangeResultData(resultSection, data) {
+  const varBidSpan = resultSection.querySelector("span#bid-variation");
+  const varAskSpan = resultSection.querySelector("span#ask-variation");
+  const resultInput = resultSection.querySelector("input#exchange-result");
+  const highestQuotInput = resultSection.querySelector(
+    "input#highest-quotation"
   );
-  const lowestQuotationResult = resultSection.querySelector(
-    "input#lowest-quot-result"
-  );
+  const lowestQuotInput = resultSection.querySelector("input#lowest-quotation");
 
-  varBidResult.textContent = `${data.varBidValue}%`;
-  varAskResult.textContent = `${data.varAskValue}%`;
-  exchangeResult.value = data.exchangeValue;
-  lowestQuotationResult.value = data.lowestValue;
-  highestQuotationResult.value = data.highestValue;
+  varBidSpan.textContent = `${data.varBid}%`;
+  varAskSpan.textContent = `${data.varAsk}%`;
+  resultInput.value = data.exchangeResult;
+  lowestQuotInput.value = data.lowestQuot;
+  highestQuotInput.value = data.highestQuot;
 }

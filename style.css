@@ -6,13 +6,21 @@
 }
 
 :root {
-  --blue-green: #38c065;
-  --lemon-green: #5cac00;
-  --hover-green: #06f756;
+  --body-black: #141518;
+  --card-black: rgba(10, 11, 12, 0.75);
+  --option-black: rgba(10, 11, 12, 0.95);
+  --shadow: rgba(4, 4, 4, 0.9);
   --flaxen-white: #f1f0e3;
+  --aquamarine: #38c065;
+  --lime-green: #5cac00;
+  --hover-green: #06f756;
   --red: #ff1919;
   --hover-red: #8a0f0f;
-  --opaque-black: rgba(10, 11, 12, 0.95);
+}
+
+::selection {
+  color: var(--body-black);
+  background-color: var(--flaxen-white);
 }
 
 html {
@@ -23,7 +31,7 @@ body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
-  background-color: #141518;
+  background-color: var(--body-black);
 }
 
 body::-webkit-scrollbar {
@@ -37,7 +45,7 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   border-radius: 25px;
-  background-color: var(--blue-green);
+  background-color: var(--aquamarine);
 }
 
 body::-webkit-scrollbar-thumb:hover {
@@ -57,24 +65,24 @@ body main {
 main h1 {
   font-family: "Pattaya", sans-serif;
   font-size: 6.4rem;
-  color: var(--blue-green);
+  color: var(--aquamarine);
   margin-bottom: 1rem;
 }
 
 main div.exchange-card {
   padding: 2.2rem 2.6rem 2.4rem;
   min-width: 64rem;
-  background-color: rgba(10, 11, 12, 0.75);
+  background-color: var(--card-black);
 
-  border: 0.2rem solid var(--lemon-green);
+  border: 0.2rem solid var(--lime-green);
   border-radius: 8px;
-  box-shadow: 2rem 2rem 2.4rem rgba(4, 4, 4, 0.9);
+  box-shadow: 2rem 2rem 2.4rem var(--shadow);
 }
 
 div.exchange-card section h2 {
   text-align: center;
   font-size: 3.4rem;
-  color: var(--blue-green);
+  color: var(--aquamarine);
   margin-bottom: 2.8rem;
 }
 
@@ -83,39 +91,39 @@ div.exchange-card section.result h2 {
   margin-bottom: 3.4rem;
 }
 
-section div.data-wrapper {
+section div.section-content div.data-wrapper {
   margin-bottom: 2.8rem;
 }
 
-section div.data-wrapper:last-child {
+div.section-content div.data-wrapper:last-child {
   margin-bottom: 0;
 }
 
-section :is(p, label) {
+div.data-wrapper :is(p, label) {
   display: block;
   width: fit-content;
 
   font-size: 2.375rem;
-  color: #f1f0e3;
+  color: var(--flaxen-white);
   margin-bottom: 1rem;
 }
 
-section label {
+div.data-wrapper label {
   cursor: pointer;
 }
 
-section :is(select, input) {
+div.data-wrapper :is(select, input) {
   width: 28rem;
   background-color: transparent;
   font-size: 2.1rem;
   letter-spacing: 0.05rem;
 
   outline: none;
-  border: 0.25rem solid var(--lemon-green);
+  border: 0.25rem solid var(--lime-green);
   transition-duration: 0.5s;
 }
 
-section :is(input:focus, select:focus) {
+div.data-wrapper :is(input:focus, select:focus) {
   border-color: var(--red);
 }
 
@@ -123,9 +131,9 @@ section.data-input input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-section input {
+div.data-wrapper input {
   padding: 0.35rem 1.8rem;
-  color: #f1f0e3;
+  color: var(--flaxen-white);
   border-radius: 30px 0 30px 0;
 }
 
@@ -135,7 +143,7 @@ section.result input[readonly] {
 
 section.data-input select {
   padding: 0.35rem 0.9rem;
-  color: var(--blue-green);
+  color: var(--aquamarine);
   cursor: pointer;
 }
 
@@ -153,27 +161,27 @@ section.data-input select::-webkit-scrollbar-thumb:hover {
 }
 
 section.data-input select::-webkit-scrollbar-track {
-  background-color: var(--opaque-black);
+  background-color: var(--option-black);
 }
 
 section.data-input select option {
   font-size: 2.1rem;
-  background-color: var(--opaque-black);
-  color: #f1f0e3;
+  background-color: var(--option-black);
+  color: var(--flaxen-white);
 }
 
-div.exchange-card div.btn-container {
+div.exchange-card div.card-actions {
   text-align: center;
   margin-top: 3.8rem;
 }
 
-div.btn-container button {
+div.card-actions button {
   width: 22rem;
   height: 4.8rem;
 
   font-family: "Pattaya", sans-serif;
   font-size: 2.55rem;
-  background-color: var(--blue-green);
+  background-color: var(--aquamarine);
 
   outline-offset: 2px;
   border: none;
@@ -182,22 +190,22 @@ div.btn-container button {
   transition: background-color 0.5s;
 }
 
-div.btn-container :is(button:hover, button:focus) {
+div.card-actions :is(button:hover, button:focus) {
   background-color: var(--hover-green);
 }
 
-div.exchange-card section.result div.result-container {
+div.exchange-card section.result div.section-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-div.result-container :is(div.left-column, div.right-column) {
+div.section-content :is(div.left-column, div.right-column) {
   padding: 0.8rem 0 1.6rem;
 }
 
-div.result-container div.left-column {
+div.section-content div.left-column {
   padding-right: 2.8rem;
-  color: var(--blue-green);
+  color: var(--aquamarine);
   border-right: 1px solid var(--red);
 }
 
@@ -221,7 +229,7 @@ div.left-column p:last-of-type span {
   letter-spacing: 0.05rem;
 }
 
-div.result-container div.right-column {
+div.section-content div.right-column {
   padding-left: 2.8rem;
   border-left: 1px solid var(--red);
 }
@@ -257,30 +265,26 @@ div.right-column span {
     margin-bottom: 2.8rem;
   }
 
-  div.exchange-card section.result div.result-container {
+  div.exchange-card section.result div.section-content {
     display: flex;
     flex-direction: column;
   }
 
-  div.result-container div.left-column {
+  div.section-content div.left-column {
     padding: 0;
     padding-bottom: 3.4rem;
     border-right: none;
     border-bottom: 1px solid var(--red);
   }
 
-  div.result-container div.left-column label {
-    margin-top: 22.5px;
-  }
-
-  div.result-container div.right-column {
+  div.section-content div.right-column {
     padding: 0;
     padding-top: 3.2rem;
     border-left: none;
     border-top: 1px solid var(--red);
   }
 
-  div.result-container div.right-column input {
+  div.right-column input {
     border-radius: 30px 0 30px 0;
   }
 }
