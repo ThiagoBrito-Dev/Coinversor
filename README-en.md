@@ -14,10 +14,10 @@
   </div>
 
   <div>
-    <img src="https://img.shields.io/github/license/trybrito/Podcastr?color=920707&style=for-the-badge" />
+    <img src="https://img.shields.io/github/license/trybrito/Coinversor?color=ff1919&style=for-the-badge" />
     <a href="https://coinversor.netlify.app/">
       <img src="https://api.netlify.com/api/v1/badges/30dff3ac-7dfc-41ee-abac-888ef4901e49/deploy-status" /></a>
-    <img src="https://img.shields.io/static/v1?label=version&message=1.0.0&color=920707&style=for-the-badge" />
+    <img src="https://img.shields.io/static/v1?label=version&message=1.0.0&color=ff1919&style=for-the-badge" />
   </div>
 </div>
 
@@ -26,7 +26,7 @@
 ### 🎯 About the project
 
 <p>
-  With more than 30 currency options, Coinversor is a financial application, developed with Vanilla JavaScript, for calculating currency conversions, as well as obtaining information related to currencies, such as the variation rates between purchase and sale values (BID and ASK, respectively) and the highest and lowest quotation recorded on the day in question.
+  With more than 30 currency options, Coinversor is a financial application, developed with Vanilla JavaScript, for calculating currency conversions and obtaining related information, such as the variation rates between purchase and sale values (BID and ASK, respectively) of the chosen currency and its highest and lowest quote for the day.
 </p>
 
 <hr>
@@ -42,7 +42,7 @@
 ### 🏆 Features
 
 - [x] Perform and display the result of the currency exchange;
-- [x] Display the variation rates between purchase and sale amount of the selected currency;
+- [x] Display the rates of change between the buy and sell amounts of the selected currency;
 - [x] Display the current value of the highest and lowest quote of the day;
 - [x] Format input and output monetary data; and
 - [x] Implement application responsiveness;
@@ -89,17 +89,15 @@ $ cd .../Coinversor
       🤝 Thiago Raniery Brito
     </h3>
     <p>
-      Hey Dev, did you like the application? Well, if you want, feel free to get in touch with me for here or through the tags below.
-    /p>
+      Hey, Dev, did you like the app? Well, if you want, feel free to contribute to the project and/or get in touch with me through the platforms below, see you later!
+    </p>
   </div>
 
   <div>
-    <a href="https://www.linkedin.com/in/thiagoranierybrito/">
-      <img src="https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thiagoranierybrito/" />
-    </a>
+    <a href="https://www.linkedin.com/in/trybrito/">
+      <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="mailto:thiagobritotrs@gmail.com">
-      <img src="https://img.shields.io/badge/-Gmail-c14438?style=for-the-badge&logo=Gmail&logoColor=white&link=mailto:thiagobritotrs@gmail.com" />
-    </a>
+      <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
   </div>
 </div>
 
