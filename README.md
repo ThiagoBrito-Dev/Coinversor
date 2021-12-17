@@ -14,10 +14,10 @@
   </div>
 
   <div>
-    <img src="https://img.shields.io/github/license/trybrito/Podcastr?color=920707&style=for-the-badge" />
+    <img src="https://img.shields.io/github/license/trybrito/Coinversor?color=ff1919&style=for-the-badge" />
     <a href="https://coinversor.netlify.app/">
       <img src="https://api.netlify.com/api/v1/badges/30dff3ac-7dfc-41ee-abac-888ef4901e49/deploy-status" /></a>
-    <img src="https://img.shields.io/static/v1?label=version&message=1.0.0&color=920707&style=for-the-badge" />
+    <img src="https://img.shields.io/static/v1?label=version&message=1.0.0&color=ff1919&style=for-the-badge" />
   </div>
 </div>
 
@@ -26,7 +26,7 @@
 ### 🎯 Sobre o projeto
 
 <p>
-  Possuindo mais de 30 opções de moedas, o Coinversor é uma aplicação financeira, desenvolvida com JavaScript puro, para cálculo de conversões monetárias, bem como, obtenção de informações relacionadas às moedas, como as taxas de variação entre os valores de compra e venda (BID e ASK, respectivamente) e a maior e a menor cotação registrada no dia em questão.
+  Contando com mais de 30 opções de moedas, o Coinversor é uma aplicação financeira, desenvolvida com JavaScript Vanilla, para cálculo de conversões monetárias e obtenção de informações correlatas, como as taxas de variação entre os valores de compra e venda (BID e ASK, respectivamente) da moeda escolhida e a sua maior e menor cotação do dia.
 </p>
 
 <hr>
@@ -42,7 +42,7 @@
 ### 🏆 Features
 
 - [x] Realizar e exibir o resultado do câmbio monetário;
-- [x] Exibir as taxas de variação entre o valor de compra e venda da moeda selecionada;
+- [x] Exibir as taxas de variação entre os valores de compra e venda da moeda selecionada;
 - [x] Exibir o valor atual da maior e da menor cotação do dia;
 - [x] Formatar os dados monetários de entrada e saída; e
 - [x] Implementar a responsividade da aplicação;
@@ -64,8 +64,7 @@ $ git clone <https://github.com/trybrito/Podcastr>
 # Acesse a pasta do projeto pelo terminal de comando
 $ cd .../Coinversor
 
-# E, para finalizar, basta abrir o arquivo "index.html" no seu navegador, ou ainda,
-# utilizando o Live Server, caso você o possua.
+# E, para finalizar, basta abrir o arquivo "index.html" no seu navegador, ou ainda, utilizando o Live Server, caso você o possua.
 ```
 
 <hr>
@@ -90,15 +89,15 @@ $ cd .../Coinversor
       🤝 Thiago Raniery Brito
     </h3>
     <p>
-      E aí Dev, gostou da aplicação? Bom, se quiser, fique à vontade para entrar em contato comigo por aqui ou pelas tags abaixo.
+      E aí, Dev, gostou da aplicação? Bom, se quiser, fique à vontade para contribuir com o projeto e/ou entrar em contato comigo por meio das plataformas abaixo, até mais!
     </p>
   </div>
 
   <div>
-    <a href="https://www.linkedin.com/in/thiagoranierybrito/">
-      <img src="https://img.shields.io/badge/-LinkedIn-blue?style=for-the-badge&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/thiagoranierybrito/" /></a>
+    <a href="https://www.linkedin.com/in/trybrito/">
+      <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="mailto:thiagobritotrs@gmail.com">
-      <img src="https://img.shields.io/badge/-Gmail-c14438?style=for-the-badge&logo=Gmail&logoColor=white&link=mailto:thiagobritotrs@gmail.com" /></a>
+      <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
   </div>
 </div>
 
