@@ -59,7 +59,7 @@ Bom, tendo tudo isso pronto e instalado, podemos ir para o passo a passo de como
 
 ```bash
 # Primeiramente, clone este repositório com o GIT
-$ git clone <https://github.com/trybrito/Podcastr>
+$ git clone <https://github.com/trybrito/Coinversor>
 
 # Acesse a pasta do projeto pelo terminal de comando
 $ cd .../Coinversor
